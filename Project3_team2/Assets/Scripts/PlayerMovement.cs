@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float groundDrag;
 
+    [Header("Jump")]
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
@@ -19,11 +20,17 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
+
+    [Header("Slope Handling")]
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    private bool exitingSlope;
 
     public Transform orientation;
 
@@ -33,6 +40,14 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    public MovementState state;
+    public enum MovementState
+    {
+        walking,
+        sprinting,
+        air
+    }
 
     private void Start()
     {
@@ -49,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
         MyInput();
         SpeedControl();
+        StateHandler();
 
         // handle drag
         if (grounded)
@@ -81,7 +97,17 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Vector3 forward = orientation.forward;
+        Vector3 right = orientation.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        moveDirection = forward * verticalInput + right * horizontalInput;
+        //moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         // on ground
         if (grounded)
@@ -90,6 +116,17 @@ public class PlayerMovement : MonoBehaviour
         // in air
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+
+        //on slope
+        else if (OnSlope() && !exitingSlope)
+        {
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+
+            if (rb.linearVelocity.y > 0)
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+        }
+        // turns gravity off when on slope
+        rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
@@ -106,6 +143,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        exitingSlope = true;
+
         // reset y velocity
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
@@ -114,5 +153,48 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+        exitingSlope = false;
     }
+
+    private void StateHandler()
+    {
+        
+
+        // Mode - Sprinting
+       if (grounded && Input.GetKey(sprintKey))
+        {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+            Debug.Log("sprinting");
+        }
+
+        // Mode - Walking
+        else if (grounded)
+        {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+
+        // Mode - Air
+        else
+        {
+            state = MovementState.air;
+        }
+    }
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
 }

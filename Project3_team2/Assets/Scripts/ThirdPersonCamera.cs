@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic; 
 using UnityEngine;
+using Unity.Cinemachine;
+
 
 public class ThirdPersonCamera : MonoBehaviour
 {
@@ -13,8 +15,11 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public CameraStyle currentStyle;
 
-    public GameObject thirdPersonCam;
-    public GameObject aimingCam;
+    //public GameObject thirdPersonCam;
+    //public GameObject aimingCam;
+
+    public CinemachineCamera thirdPersonCam;
+    public CinemachineCamera aimingCam;
 
     public Transform aimingLookAt;
 
@@ -29,6 +34,7 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        SwitchCameraStyle(CameraStyle.Basic);
     }
 
     private void Update()
@@ -44,14 +50,20 @@ public class ThirdPersonCamera : MonoBehaviour
         orientation.forward = viewDir.normalized;
 
         //rotate player obj
+      
+
         if (currentStyle == CameraStyle.Basic)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
             Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-            if (inputDir != Vector3.zero)
-                playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            Vector3 flatDir = inputDir;
+            flatDir.y = 0f;
+            if (inputDir.magnitude > 0.1f) {
+                // playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+                playerObj.forward = Vector3.Slerp(playerObj.forward, flatDir.normalized, Time.deltaTime * rotationSpeed);
+            }
+          
         }
         else if ( currentStyle == CameraStyle.Aiming)
                 {
@@ -62,14 +74,18 @@ public class ThirdPersonCamera : MonoBehaviour
             }
         }
 
-        private void SwitchCameraStyle(CameraStyle newStyle)
+    private void SwitchCameraStyle(CameraStyle newStyle)
     {
-        aimingCam.SetActive(false);
-        thirdPersonCam.SetActive(false);
-       
-
-        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
-        if (newStyle == CameraStyle.Aiming) aimingCam.SetActive(true);
+        if (newStyle == CameraStyle.Basic)
+        {
+            thirdPersonCam.Priority = 10;
+            aimingCam.Priority = 0;
+        }
+        else if (newStyle == CameraStyle.Aiming)
+        {
+            thirdPersonCam.Priority = 0;
+            aimingCam.Priority = 10;
+        }
 
         currentStyle = newStyle;
     }
