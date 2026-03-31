@@ -21,7 +21,7 @@ public class RecallAbility : MonoBehaviour
 
 
     public bool hasTimer;
-    public float teleportTime; 
+    public float teleportTime;
 
     public void SetRecallPoint()
     {
@@ -29,8 +29,9 @@ public class RecallAbility : MonoBehaviour
         {
             StartCoroutine(DoActionAfterDelay(teleportTime));
         }
-        
+
         Destroy(spawnedObject);
+
         recordPosition = playerRoot.position;
 
         // store ONLY horizontal direction
@@ -38,7 +39,9 @@ public class RecallAbility : MonoBehaviour
         recordDirection.y = 0f;
         recordDirection.Normalize();
 
-        spawnedObject = Instantiate(Portal, recordPosition, Quaternion.Euler(currentRotation));
+        Quaternion portalRotation = Quaternion.LookRotation(recordDirection);
+
+        spawnedObject = Instantiate(Portal, recordPosition, portalRotation);
         spawnedObject.SetActive(true);
 
         Debug.Log("Recall point set");
@@ -73,10 +76,10 @@ public class RecallAbility : MonoBehaviour
 
     private void Update()
     {
-        Vector3 currentRotation = transform.eulerAngles;
+        //Vector3 currentRotation = transform.eulerAngles;
 
         // Replace only the Y-axis with player's Y rotation
-        currentRotation.y = playerObj.eulerAngles.y;
+       // currentRotation.y = playerObj.eulerAngles.y;
 
         // Apply the new rotation
         //transform.rotation = Quaternion.Euler(currentRotation);
