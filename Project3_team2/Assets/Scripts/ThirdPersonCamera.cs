@@ -36,7 +36,7 @@ public class ThirdPersonCamera : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Aiming);
 
-        // CAMERA ? ORIENTATION (this is fine, we keep it)
+        // camera orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 

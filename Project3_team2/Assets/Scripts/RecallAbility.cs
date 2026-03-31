@@ -3,9 +3,9 @@ using UnityEngine;
 public class RecallAbility : MonoBehaviour
 {
     public Rigidbody rb;
-    public Transform playerRoot;   // the object that moves (your player)
+    public Transform playerRoot;   //  object that moves
     public Transform playerObj;    // the visible model that rotates
-    public Transform cameraTransform; // MAIN CAMERA transform
+    public Transform cameraTransform; // main camera transform
 
     private Vector3 recordPosition;
     private Vector3 recordDirection;
@@ -24,19 +24,19 @@ public class RecallAbility : MonoBehaviour
 
     public void Recall()
     {
-        // keep CURRENT speed (not old speed)
+        // keeps current speed
         float currentSpeed = rb.linearVelocity.magnitude;
 
-        // TELEPORT
+        // teleport
         playerRoot.position = recordPosition;
 
-        // ROTATE PLAYER
+        // rotating player
         playerObj.forward = recordDirection;
 
-        // APPLY MOMENTUM in stored direction
+        // applying momentum in stored direction
         rb.linearVelocity = recordDirection * currentSpeed;
 
-        // FORCE CAMERA TO MATCH DIRECTION
+        // camera matching direction (not working)
         Vector3 camDir = recordDirection;
         camDir.y = 0f;
 
