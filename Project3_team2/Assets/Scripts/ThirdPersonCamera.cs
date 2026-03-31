@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic; 
 using UnityEngine;
 using Unity.Cinemachine;
-
 
 public class ThirdPersonCamera : MonoBehaviour
 {
@@ -15,9 +12,6 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public CameraStyle currentStyle;
 
-    //public GameObject thirdPersonCam;
-    //public GameObject aimingCam;
-
     public CinemachineCamera thirdPersonCam;
     public CinemachineCamera aimingCam;
 
@@ -29,7 +23,6 @@ public class ThirdPersonCamera : MonoBehaviour
         Aiming
     }
 
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -39,40 +32,41 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Update()
     {
-        // switch styles
+        // switch camera modes
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Aiming);
-        
 
-
-        //rotate orientation
+        // CAMERA ? ORIENTATION (this is fine, we keep it)
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
-
-        //rotate player obj
-      
 
         if (currentStyle == CameraStyle.Basic)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
+
             Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
             Vector3 flatDir = inputDir;
             flatDir.y = 0f;
-            if (inputDir.magnitude > 0.1f) {
-                // playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-                playerObj.forward = Vector3.Slerp(playerObj.forward, flatDir.normalized, Time.deltaTime * rotationSpeed);
-            }
-          
-        }
-        else if ( currentStyle == CameraStyle.Aiming)
-                {
-                Vector3 dirToAimingLookAt = aimingLookAt.position - new Vector3(transform.position.x, aimingLookAt.position.y, transform.position.z);
-                orientation.forward = dirToAimingLookAt.normalized;
 
-                playerObj.forward = dirToAimingLookAt.normalized;
+            if (inputDir.magnitude > 0.1f)
+            {
+                playerObj.forward = Vector3.Slerp(
+                    playerObj.forward,
+                    flatDir.normalized,
+                    Time.deltaTime * rotationSpeed
+                );
             }
         }
+        else if (currentStyle == CameraStyle.Aiming)
+        {
+            Vector3 dirToAimingLookAt = aimingLookAt.position - new Vector3(transform.position.x, aimingLookAt.position.y, transform.position.z);
+
+            orientation.forward = dirToAimingLookAt.normalized;
+            playerObj.forward = dirToAimingLookAt.normalized;
+        }
+    }
 
     private void SwitchCameraStyle(CameraStyle newStyle)
     {
@@ -81,7 +75,7 @@ public class ThirdPersonCamera : MonoBehaviour
             thirdPersonCam.Priority = 10;
             aimingCam.Priority = 0;
         }
-        else if (newStyle == CameraStyle.Aiming)
+        else
         {
             thirdPersonCam.Priority = 0;
             aimingCam.Priority = 10;
@@ -89,6 +83,4 @@ public class ThirdPersonCamera : MonoBehaviour
 
         currentStyle = newStyle;
     }
-
 }
-
