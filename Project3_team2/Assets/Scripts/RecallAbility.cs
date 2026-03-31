@@ -9,8 +9,12 @@ public class RecallAbility : MonoBehaviour
     public Transform playerObj;    // the visible model that rotates
     public Transform cameraTransform; // main camera transform
 
+    public Quaternion playerRot;
+
     private Vector3 recordPosition;
     private Vector3 recordDirection;
+
+    private Vector3 currentRotation;
 
     public GameObject Portal;
     private GameObject spawnedObject;
@@ -34,7 +38,7 @@ public class RecallAbility : MonoBehaviour
         recordDirection.y = 0f;
         recordDirection.Normalize();
 
-        spawnedObject = Instantiate(Portal, recordPosition, Quaternion.identity);
+        spawnedObject = Instantiate(Portal, recordPosition, Quaternion.Euler(currentRotation));
         spawnedObject.SetActive(true);
 
         Debug.Log("Recall point set");
@@ -69,6 +73,14 @@ public class RecallAbility : MonoBehaviour
 
     private void Update()
     {
+        Vector3 currentRotation = transform.eulerAngles;
+
+        // Replace only the Y-axis with player's Y rotation
+        currentRotation.y = playerObj.eulerAngles.y;
+
+        // Apply the new rotation
+        //transform.rotation = Quaternion.Euler(currentRotation);
+
         if (Input.GetKeyDown(KeyCode.R)) SetRecallPoint();
         if (Input.GetKeyDown(KeyCode.T)) Recall();
     }
