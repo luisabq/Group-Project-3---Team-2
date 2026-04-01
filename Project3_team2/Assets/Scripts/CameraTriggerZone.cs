@@ -19,7 +19,9 @@ public class CameraTriggerZone : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
+
     {
+        Debug.Log("entered");
         if (!other.CompareTag("Player")) return;
 
         originalPriorities.Clear();

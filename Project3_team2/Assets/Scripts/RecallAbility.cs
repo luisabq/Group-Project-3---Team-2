@@ -1,113 +1,135 @@
-using System;
+using System.Collections;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
+using Unity.Cinemachine;
+using System.Collections.Generic;
 
 public class RecallAbility : MonoBehaviour
 {
+    [Header("References")]
     public Rigidbody rb;
-    public Transform playerRoot;   //  object that moves
-    public Transform playerObj;    // the visible model that rotates
-    public Transform cameraTransform; // main camera transform
+    public Transform playerRoot;
+    public Transform playerObj;
 
-    public Quaternion playerRot;
+    [Header("Portal")]
+    public GameObject Portal;
+    private GameObject spawnedPortal;
+
+    [Header("Cinemachine")]
+    public CinemachineCamera portalCamera;
+    public int portalCamPriority = 20;
+    public float portalCamDuration = 1f; // how long portal camera stays active
+    private Dictionary<CinemachineCamera, int> originalPriorities = new Dictionary<CinemachineCamera, int>();
+    private CinemachineCamera[] allCams;
+
+    [Header("Teleport Settings")]
+    public bool hasTimer;
+    public float teleportTime;
 
     private Vector3 recordPosition;
     private Vector3 recordDirection;
 
-    private Vector3 currentRotation;
+    [Header("Portal Camera Offset")]
+    public Vector3 behindOffset = new Vector3(0, 2f, -4f);
 
-    public GameObject Portal;
-    private GameObject spawnedObject;
+    public bool usingCam;
 
+    private void Start()
+    {
+        allCams = FindObjectsOfType<CinemachineCamera>();
+    }
 
-    public bool hasTimer;
-    public float teleportTime;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) SetRecallPoint();
+        if (Input.GetKeyDown(KeyCode.T)) Recall();
+    }
 
     public void SetRecallPoint()
     {
         if (hasTimer)
-        {
             StartCoroutine(DoActionAfterDelay(teleportTime));
-        }
 
-        Destroy(spawnedObject);
+        Destroy(spawnedPortal);
 
         recordPosition = playerRoot.position;
 
-        // store ONLY horizontal direction
         recordDirection = playerObj.forward;
         recordDirection.y = 0f;
         recordDirection.Normalize();
 
         Quaternion portalRotation = Quaternion.LookRotation(recordDirection);
+        spawnedPortal = Instantiate(Portal, recordPosition, portalRotation);
+        spawnedPortal.SetActive(true);
 
-        spawnedObject = Instantiate(Portal, recordPosition, portalRotation);
-        spawnedObject.SetActive(true);
+        // setup portal camera to follow portal
+        if (portalCamera != null && usingCam)
+        {
+            portalCamera.Follow = spawnedPortal.transform;
+            portalCamera.LookAt = spawnedPortal.transform;
+
+            var transposerBase = portalCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
+            var transposer = transposerBase as CinemachineTransposer;
+            if (transposer != null)
+                transposer.m_FollowOffset = behindOffset;
+        }
 
         Debug.Log("Recall point set");
     }
 
     public void Recall()
     {
-        spawnedObject.SetActive(false);
+        if (spawnedPortal != null)
+            spawnedPortal.SetActive(false);
 
-        // keeps current speed
-       float currentSpeed = rb.linearVelocity.magnitude;
+        float currentSpeed = rb.linearVelocity.magnitude;
 
-        // teleport
+        // teleport player
         playerRoot.position = recordPosition;
-
-        // rotating player
         playerObj.forward = recordDirection;
-
-        // applying momentum in stored direction
         rb.linearVelocity = recordDirection * currentSpeed;
 
-        // camera matching direction (not working)
-        Vector3 camDir = recordDirection;
-        camDir.y = 0f;
-
-        cameraTransform.rotation = Quaternion.LookRotation(camDir);
-
-        Debug.Log("Recalled with speed: " + currentSpeed);
-
-        
-    }
-
-    private void Update()
-    {
-        //Vector3 currentRotation = transform.eulerAngles;
-
-        // Replace only the Y-axis with player's Y rotation
-       // currentRotation.y = playerObj.eulerAngles.y;
-
-        // Apply the new rotation
-        //transform.rotation = Quaternion.Euler(currentRotation);
-
-        if (Input.GetKeyDown(KeyCode.R)) SetRecallPoint();
-        if (Input.GetKeyDown(KeyCode.T)) Recall();
-    }
-
-
-
-
-    private System.Collections.IEnumerator DoActionAfterDelay(float teleportTime)
-    {
-        // Validate delay to avoid negative values
-        if (teleportTime < 0f)
+        // camera switching like CameraTriggerZone
+        if (portalCamera != null && usingCam)
         {
-            Debug.LogWarning("Delay cannot be negative. Using 0 instead.");
-            teleportTime = 0f;
+            originalPriorities.Clear();
+
+            foreach (var cam in allCams)
+            {
+                if (cam == null) continue;
+
+               
+                originalPriorities[cam] = cam.Priority;
+
+               
+                if (cam != portalCamera)
+                    cam.Priority = 0;
+            }
+
+           
+            portalCamera.Priority = portalCamPriority;
+
+            // restore after delay
+            StartCoroutine(RestoreCameraPriorities());
         }
 
-        // Wait for the specified time without freezing the game
-        yield return new WaitForSeconds(teleportTime);
-
-        // Perform your action here
-        Debug.Log($"Action executed after {teleportTime} seconds!");
-
-        // Example: Enable a GameObject
-        Recall();
+        Debug.Log("Recalled with speed: " + currentSpeed);
     }
 
+    private IEnumerator RestoreCameraPriorities()
+    {
+        yield return new WaitForSeconds(portalCamDuration);
+
+        foreach (var pair in originalPriorities)
+        {
+            if (pair.Key != null)
+                pair.Key.Priority = pair.Value;
+        }
+    }
+
+    private IEnumerator DoActionAfterDelay(float delay)
+    {
+        if (delay < 0f) delay = 0f;
+        yield return new WaitForSeconds(delay);
+        Recall();
+    }
 }
