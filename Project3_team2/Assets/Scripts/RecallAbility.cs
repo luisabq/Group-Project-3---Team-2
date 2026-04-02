@@ -45,6 +45,7 @@ public class RecallAbility : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SetRecallPoint();
+            allowedtoTP = true;
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -57,7 +58,7 @@ public class RecallAbility : MonoBehaviour
 
     public void SetRecallPoint()
     {
-        if (hasTimer && allowedtoTP)
+        if (hasTimer)
             StartCoroutine(DoActionAfterDelay(teleportTime));
 
 
@@ -90,6 +91,7 @@ public class RecallAbility : MonoBehaviour
 
     public void Recall()
     {
+
         allowedtoTP = false;
         if (spawnedPortal != null)
             spawnedPortal.SetActive(false);
@@ -148,16 +150,19 @@ public class RecallAbility : MonoBehaviour
     {
         if (delay < 0f) delay = 0f;
         yield return new WaitForSeconds(delay);
-        StartCoroutine(MoveDelay(1.0f));
+        if (allowedtoTP)       StartCoroutine(MoveDelay(1.0f));
 
     }
 
     private IEnumerator MoveDelay(float moveDelay)
     {
-        Recall();
-        yield return new WaitForSeconds(moveDelay);
-        GetComponent<PlayerMovement>().enabled = true;
-        Debug.Log("Script on");
+        if (allowedtoTP)
+        {
 
+            Recall();
+            yield return new WaitForSeconds(moveDelay);
+            GetComponent<PlayerMovement>().enabled = true;
+            Debug.Log("Script on");
+        }
     }
 }
