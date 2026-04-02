@@ -17,7 +17,7 @@ public class RecallAbility : MonoBehaviour
     [Header("Cinemachine")]
     public CinemachineCamera portalCamera;
     public int portalCamPriority = 20;
-    public float portalCamDuration = 1f; // how long portal camera stays active
+    public float portalCamDuration; // how long portal camera stays active
     private Dictionary<CinemachineCamera, int> originalPriorities = new Dictionary<CinemachineCamera, int>();
     private CinemachineCamera[] allCams;
 
@@ -33,6 +33,8 @@ public class RecallAbility : MonoBehaviour
 
     public bool usingCam;
 
+    private bool allowedtoTP = true;
+
     private void Start()
     {
         allCams = FindObjectsOfType<CinemachineCamera>();
@@ -40,14 +42,24 @@ public class RecallAbility : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) SetRecallPoint();
-        if (Input.GetKeyDown(KeyCode.T)) Recall();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SetRecallPoint();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            
+            StartCoroutine(MoveDelay(1.0f));
+
+            
+        }
     }
 
     public void SetRecallPoint()
     {
-        if (hasTimer)
+        if (hasTimer && allowedtoTP)
             StartCoroutine(DoActionAfterDelay(teleportTime));
+
 
         Destroy(spawnedPortal);
 
@@ -78,15 +90,20 @@ public class RecallAbility : MonoBehaviour
 
     public void Recall()
     {
+        allowedtoTP = false;
         if (spawnedPortal != null)
             spawnedPortal.SetActive(false);
 
         float currentSpeed = rb.linearVelocity.magnitude;
 
         // teleport player
+        
+        Debug.Log("Script off");
         playerRoot.position = recordPosition;
         playerObj.forward = recordDirection;
+        GetComponent<PlayerMovement>().enabled = false;
         rb.linearVelocity = recordDirection * currentSpeed;
+       
 
         // camera switching like CameraTriggerZone
         if (portalCamera != null && usingCam)
@@ -110,6 +127,7 @@ public class RecallAbility : MonoBehaviour
 
             // restore after delay
             StartCoroutine(RestoreCameraPriorities());
+            allowedtoTP = true;
         }
 
         Debug.Log("Recalled with speed: " + currentSpeed);
@@ -130,6 +148,16 @@ public class RecallAbility : MonoBehaviour
     {
         if (delay < 0f) delay = 0f;
         yield return new WaitForSeconds(delay);
+        StartCoroutine(MoveDelay(1.0f));
+
+    }
+
+    private IEnumerator MoveDelay(float moveDelay)
+    {
         Recall();
+        yield return new WaitForSeconds(moveDelay);
+        GetComponent<PlayerMovement>().enabled = true;
+        Debug.Log("Script on");
+
     }
 }

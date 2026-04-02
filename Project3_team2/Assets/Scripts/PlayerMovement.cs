@@ -12,6 +12,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float groundDrag;
 
+    public bool freeze;
+    public bool unlimited;
+    public bool restricted;
+
     [Header("Jumping")]
     public float jumpForce;
     public float jumpCooldown;
@@ -45,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     public MovementState state;
     public enum MovementState
     {
+        freeze,
+        unlimited,
         walking,
         sprinting,
         air
@@ -101,6 +107,20 @@ public class PlayerMovement : MonoBehaviour
     private void StateHandler()
     {
         
+        //Mode - Freeze
+        if (freeze)
+        {
+            state = MovementState.freeze;
+            rb.linearVelocity = Vector3.zero;
+        }
+
+        //Mode - Unlimited
+        else if (unlimited)
+        {
+            state = MovementState.unlimited;
+            moveSpeed = 999f;
+            return;
+        }
 
         // Mode - Sprinting
         if (grounded && Input.GetKey(sprintKey))
@@ -125,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (restricted) return;
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
