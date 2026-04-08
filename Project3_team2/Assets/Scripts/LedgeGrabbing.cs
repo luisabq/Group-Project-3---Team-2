@@ -43,6 +43,9 @@ public class LedgeGrabbing : MonoBehaviour
     {
         holding = true;
 
+
+    //FindObjectsSortMode.unlimited
+
         currLedge = ledgeHit.transform;
         lastLedge = ledgeHit.transform;
 
