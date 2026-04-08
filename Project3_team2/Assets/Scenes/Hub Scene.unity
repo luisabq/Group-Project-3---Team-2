@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f3b50e541120345acee96ecf43940a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapButton
-  levelName: Level2
+  levelName: Ruin Level
   image: {fileID: 184815817}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0, g: 1, b: 0, a: 1}
@@ -2283,7 +2283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362612636}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.23549949, y: -0.000000029777805, z: 0.0000000012086652, w: 0.9718745}
+  m_LocalRotation: {x: -0.23563124, y: -0.000000029728799, z: 0.000000001204948, w: 0.9718426}
   m_LocalPosition: {x: 0.82400095, y: 2.4369135, z: -17.78476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2944,7 +2944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517503139}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00006084352, y: -0.000000028655153, z: 0.000000008189073, w: 1}
+  m_LocalRotation: {x: -2.0966816e-24, y: -0.000000022485574, z: 0.00000000642445, w: 1}
   m_LocalPosition: {x: -0.035998885, y: 4.253095, z: -20.673862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5808,7 +5808,7 @@ Transform:
   m_GameObject: {fileID: 1149485187}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9699998, y: -0.3873, z: -11.996}
+  m_LocalPosition: {x: -0.9699998, y: -0.296, z: -11.996}
   m_LocalScale: {x: 1.8857406, y: 0.357026, z: 0.49456123}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6059,7 +6059,7 @@ MonoBehaviour:
   portalCamPriority: 30
   portalCamDuration: 0.5
   hasTimer: 1
-  teleportTime: 3
+  teleportTime: 10
   behindOffset: {x: 0, y: 2, z: 0}
   usingCam: 0
 --- !u!114 &1272160620
@@ -6074,22 +6074,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7a48f0df79745438f97027fffb5bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  walkSpeed: 7
-  sprintSpeed: 50
+  walkSpeed: 4
+  sprintSpeed: 8
   groundDrag: 5
   freeze: 0
   unlimited: 0
   restricted: 0
-  jumpForce: 15
+  jumpForce: 17
   jumpCooldown: 0.25
   airMultiplier: 0.2
   jumpKey: 32
   sprintKey: 304
-  playerHeight: 2
+  playerHeight: 4
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  maxSlopeAngle: 50
+  maxSlopeAngle: 60
   orientation: {fileID: 1162625954}
   state: 0
 --- !u!54 &1272160621
@@ -6705,7 +6705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429885002}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.18786125, y: -0.000000025973092, z: 0.0000000023259883, w: 0.9821956}
+  m_LocalRotation: {x: -0.18786125, y: -0.000000029890444, z: 0.0000000026768125, w: 0.9821956}
   m_LocalPosition: {x: -0.16599958, y: 7.110607, z: -9.24931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7517,7 +7517,7 @@ Transform:
   m_GameObject: {fileID: 1564690941}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.45, y: -0.3873, z: -11.996}
+  m_LocalPosition: {x: -7.45, y: -0.295, z: -11.996}
   m_LocalScale: {x: 1.8857406, y: 0.357026, z: 0.49456123}
   m_ConstrainProportionsScale: 0
   m_Children: []
