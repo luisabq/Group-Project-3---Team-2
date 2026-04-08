@@ -1,15 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GrapplingGun : MonoBehaviour
 {
-    
-    
-    public bool IsGrappling {  get; private set; }
+    public bool IsGrappling { get; private set; }
 
     public Vector3 GrapplePoint { get; private set; }
 
     [SerializeField] private float _grappleDistance;
-    
+
 
     [SerializeField] private float _reelInAcceleration;
 
@@ -32,17 +32,32 @@ public class GrapplingGun : MonoBehaviour
     {
         _playerMovement = transform.parent.GetComponentInParent<PlayerMovement>();
         _playerRigidbody = transform.parent.GetComponentInParent<Rigidbody>();
+        IsGrappling = false;
 
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartGrapple();
-        }
 
-            if (Input.GetMouseButton(0))
+
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                GetComponent<MeshRenderer>().enabled = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+            }
+
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                StartGrapple();
+            }
+
+            if (Input.GetMouseButton(1))
             {
                 _isApplyingGrappleForces = true;
 
@@ -52,11 +67,9 @@ public class GrapplingGun : MonoBehaviour
             {
                 IsGrappling = false;
                 _isApplyingGrappleForces = false;
-                _playerMovement.enabled = true;
-
-
             }
         }
+    }
 
 
 
@@ -95,8 +108,7 @@ public class GrapplingGun : MonoBehaviour
         if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, _grappleDistance))
         {
             GrapplePoint = hit.point;
-            IsGrappling = true;          
-            _playerMovement.enabled = false;
+            IsGrappling = true;
             _ropeLength = (GrapplePoint - _playerRigidbody.position).magnitude;
             _isReelingIn = true;
             _reelInSpeed = 0;
@@ -131,7 +143,7 @@ public class GrapplingGun : MonoBehaviour
 
         _isRopeInTension = true;
 
-        _playerRigidbody.position = GrapplePoint - direction * _ropeLength;
+        _playerRigidbody.AddForce(GrapplePoint - direction * _ropeLength);
     }
 
 }
