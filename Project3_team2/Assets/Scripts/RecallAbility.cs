@@ -44,8 +44,9 @@ public class RecallAbility : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SetRecallPoint();
             allowedtoTP = true;
+            SetRecallPoint();
+            
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -129,7 +130,7 @@ public class RecallAbility : MonoBehaviour
 
             // restore after delay
             StartCoroutine(RestoreCameraPriorities());
-            allowedtoTP = true;
+            
         }
 
         Debug.Log("Recalled with speed: " + currentSpeed);

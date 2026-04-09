@@ -41,23 +41,23 @@ public class GrapplingGun : MonoBehaviour
 
 
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetMouseButton(1))
             {
                 GetComponent<MeshRenderer>().enabled = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetMouseButtonUp(1))
             {
                 GetComponent<MeshRenderer>().enabled = false;
             }
 
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
                 StartGrapple();
             }
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(0))
             {
                 _isApplyingGrappleForces = true;
 

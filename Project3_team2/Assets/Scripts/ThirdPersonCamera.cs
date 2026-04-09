@@ -35,8 +35,8 @@ public class ThirdPersonCam : MonoBehaviour
     private void Update()
     {
         // switch styles
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetMouseButtonUp(1)) SwitchCameraStyle(CameraStyle.Basic);
+        if (Input.GetMouseButton(1)) SwitchCameraStyle(CameraStyle.Combat);
         if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
 
         // rotate orientation
