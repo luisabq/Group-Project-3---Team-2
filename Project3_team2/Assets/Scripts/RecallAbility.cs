@@ -34,6 +34,7 @@ public class RecallAbility : MonoBehaviour
     public bool usingCam;
 
     private bool allowedtoTP = true;
+    private Coroutine recallTimer;
 
     private void Start()
     {
@@ -60,7 +61,12 @@ public class RecallAbility : MonoBehaviour
     public void SetRecallPoint()
     {
         if (hasTimer)
-            StartCoroutine(DoActionAfterDelay(teleportTime));
+        {
+            if (recallTimer != null)
+                StopCoroutine(recallTimer);
+
+            recallTimer = StartCoroutine(DoActionAfterDelay(teleportTime));
+        }
 
 
         Destroy(spawnedPortal);
@@ -92,6 +98,11 @@ public class RecallAbility : MonoBehaviour
 
     public void Recall()
     {
+        if (recallTimer != null)
+        {
+            StopCoroutine(recallTimer);
+            recallTimer = null;
+        }
 
         allowedtoTP = false;
         if (spawnedPortal != null)
@@ -157,13 +168,9 @@ public class RecallAbility : MonoBehaviour
 
     private IEnumerator MoveDelay(float moveDelay)
     {
-        if (allowedtoTP)
-        {
-
-            Recall();
-            yield return new WaitForSeconds(moveDelay);
-            GetComponent<PlayerMovement>().enabled = true;
-            Debug.Log("Script on");
-        }
+        Recall();
+        yield return new WaitForSeconds(moveDelay);
+        GetComponent<PlayerMovement>().enabled = true;
+        Debug.Log("Script on");
     }
 }
