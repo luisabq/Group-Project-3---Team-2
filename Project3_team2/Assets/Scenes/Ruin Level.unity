@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 31645147}
   - component: {fileID: 31645146}
   - component: {fileID: 31645145}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4019,7 +4019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133581327}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.20404555, y: 0.49959055, z: -0.020220514, w: 0.84164476}
+  m_LocalRotation: {x: -0.20395024, y: 0.49958822, z: -0.020277195, w: 0.84166783}
   m_LocalPosition: {x: -2.6864917, y: -3.0661368, z: 6.107413}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7207,7 +7207,7 @@ GameObject:
   - component: {fileID: 307782536}
   - component: {fileID: 307782538}
   - component: {fileID: 307782537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParticleSteam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12153,7 +12153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 315931952}
   - component: {fileID: 315931953}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SteamSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17031,7 +17031,7 @@ GameObject:
   - component: {fileID: 683775325}
   - component: {fileID: 683775324}
   - component: {fileID: 683775323}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -20993,7 +20993,7 @@ GameObject:
   - component: {fileID: 893418514}
   - component: {fileID: 893418513}
   - component: {fileID: 893418512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Portal
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -22237,7 +22237,7 @@ GameObject:
   - component: {fileID: 957657980}
   - component: {fileID: 957657979}
   - component: {fileID: 957657978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Beak
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -29813,7 +29813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1309069394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LookTarget
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -31408,7 +31408,7 @@ GameObject:
   - component: {fileID: 1409730105}
   - component: {fileID: 1409730104}
   - component: {fileID: 1409730103}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerObj
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -31424,7 +31424,7 @@ Transform:
   m_GameObject: {fileID: 1409730101}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.027, z: 0}
+  m_LocalPosition: {x: 0, y: 0.118, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31861,7 +31861,7 @@ GameObject:
   - component: {fileID: 1421087596}
   - component: {fileID: 1421087595}
   - component: {fileID: 1421087594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33558,7 +33558,7 @@ GameObject:
   - component: {fileID: 1480506339}
   - component: {fileID: 1480506338}
   - component: {fileID: 1480506337}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SteamCollider
   m_TagString: SteamGun
   m_Icon: {fileID: 0}
@@ -36242,7 +36242,7 @@ GameObject:
   - component: {fileID: 1622153424}
   - component: {fileID: 1622153423}
   - component: {fileID: 1622153422}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -38484,7 +38484,7 @@ Transform:
   m_GameObject: {fileID: 1734363223}
   serializedVersion: 2
   m_LocalRotation: {x: -0.16269265, y: 0.4980066, z: -0.044598375, w: 0.85060656}
-  m_LocalPosition: {x: -8.8976145, y: 6.3630986, z: 29.447939}
+  m_LocalPosition: {x: -8.897614, y: 6.529351, z: 29.40044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39281,6 +39281,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1409730102}
     m_Modifications:
+    - target: {fileID: -8913996233686949209, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
@@ -39299,7 +39303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.934
+      value: -1.037
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39337,13 +39341,45 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8157661477369420568, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -6528593056624759951, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -6528593056624759951, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: -5446870878271718802, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4774146871912850621, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -4774146871912850621, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -2930796661498368396, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2598899251806460151, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1707288694412851426, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1526205421418614101, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -1526205421418614101, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_TagString
@@ -39354,20 +39390,56 @@ PrefabInstance:
       value: Pirate Model
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608911006746499260, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429968197635948093, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927064625747517847, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575640550482937146, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6575640550482937146, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6865076416870069810, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865076416870069810, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564572560317851752, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396592915537469863, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8396592915537469863, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054695075656778328, guid: 0e3199194fad0054cb852f6e7147f0ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40753,6 +40825,7 @@ GameObject:
   - component: {fileID: 1883807496}
   - component: {fileID: 1883807495}
   - component: {fileID: 1883807494}
+  - component: {fileID: 1883807498}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -40858,6 +40931,36 @@ Transform:
   - {fileID: 1706086354}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -60, z: 0}
+--- !u!114 &1883807498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883807493}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23eca0b5d9a8d1a48a8673eb084e532c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LedgeGrabbing
+  pm: {fileID: 1883807495}
+  orientation: {fileID: 1706086354}
+  cam: {fileID: 1940727511}
+  rb: {fileID: 1883807496}
+  moveToLedgeSpeed: 12
+  maxLedgeGrabDistance: 2
+  minTimeOnLedge: 0.5
+  holding: 0
+  jumpKey: 32
+  ledgeJumpForwardForce: 14
+  ledgeJumpUpwardForce: 5
+  ledgeDetectionLength: 3
+  ledgeSphereCastRadius: 0.5
+  whatIsLedge:
+    serializedVersion: 2
+    m_Bits: 128
+  exitingLedge: 0
+  exitLedgeTime: 0.2
 --- !u!1 &1894550992
 GameObject:
   m_ObjectHideFlags: 0
@@ -41092,7 +41195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1895514107}
   - component: {fileID: 1895514108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PortalLookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
