@@ -14,6 +14,8 @@ public class SteamGun : MonoBehaviour
 
     void Start()
     {
+        particles.transform.position = transform.position + (playerTransform.up * 0.5f);
+
 
     }
 
@@ -25,6 +27,8 @@ public class SteamGun : MonoBehaviour
         // attach to player, in front 
         transform.position = playerTransform.position + (playerTransform.forward * 1);
         transform.eulerAngles = new Vector3(0, playerY, 0);
+
+        
 
         // if pressing z, steam goes
         if (Input.GetKey(KeyCode.Z))
