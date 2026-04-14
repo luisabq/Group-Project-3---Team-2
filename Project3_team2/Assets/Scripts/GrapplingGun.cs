@@ -26,6 +26,8 @@ public class GrapplingGun : MonoBehaviour
 
     private float _reatactionTimer;
 
+    public bool equipped = true; 
+
 
 
     private void Start()
@@ -38,7 +40,18 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            equipped = true;
+            Debug.Log("equipped grapple");
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            equipped = false;
+            Debug.Log("unequipped grapple");
+        }
 
+        if (equipped)
 
         {
             if (Input.GetMouseButton(1))
