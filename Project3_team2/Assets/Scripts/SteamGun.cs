@@ -13,7 +13,7 @@ public class SteamGun : MonoBehaviour
 
     void Start()
     {
-
+        particles.transform.position = transform.position + (playerTransform.up * 0.5f);
     }
 
     void Update()
