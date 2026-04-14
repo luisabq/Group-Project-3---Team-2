@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("PlayerStats")]
     public int activeSteamReceptors;
     public bool onSteamTimer = false;
+    public float steamTimerLength;
+    private Coroutine steamCoroutine;
+
 
 
     [Header("Movement")]
@@ -70,6 +73,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
+        if (onSteamTimer && steamCoroutine == null)
+        {
+            steamCoroutine = StartCoroutine(SteamTimerRoutine());
+        }
+
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         MyInput();
@@ -204,4 +213,19 @@ public class PlayerMovement : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
+
+
+    IEnumerator SteamTimerRoutine()
+    {
+        yield return new WaitForSeconds(steamTimerLength);
+
+
+        Debug.Log("Time limit done, active steam now 0");
+        activeSteamReceptors = 0;
+        onSteamTimer = false;
+
+        steamCoroutine = null; 
+    }
+
+
 }

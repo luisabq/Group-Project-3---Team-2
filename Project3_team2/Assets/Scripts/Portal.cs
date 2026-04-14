@@ -16,7 +16,7 @@ public class Portal : MonoBehaviour
     public PlayerMovement playerMovement; 
     public int steamRequirement;
     public bool autoDeactivate;
-    private bool deactivated; 
+    private bool deactivated = false; 
 
     
     
