@@ -2985,9 +2985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   linkedPortal: {fileID: 226894455}
   cooldown: 1
-  playerMovement: {fileID: 1883807495}
-  steamRequirement: 2
-  autoDeactivate: 0
 --- !u!65 &111767188
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6650,9 +6647,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Portal
   linkedPortal: {fileID: 111767187}
   cooldown: 1
-  playerMovement: {fileID: 1883807495}
-  steamRequirement: 2
-  autoDeactivate: 0
 --- !u!65 &226894456
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42675,7 +42669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7a48f0df79745438f97027fffb5bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  activeSteamReceptors: 3
   walkSpeed: 12
   sprintSpeed: 20
   groundDrag: 5
@@ -46836,6 +46829,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1197140800}
   m_LocalEulerAnglesHint: {x: 0, y: -22.979, z: 0}
+--- !u!1001 &2585082827687368419
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 263.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 114.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209334710822953743, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837956653267728821, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
+      propertyPath: m_Name
+      value: CanyonLevelSpecialLedgesTextured
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02ac88fc0679ba842b9043149ee717d9, type: 3}
 --- !u!1001 &7730652110040780340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46964,3 +47014,4 @@ SceneRoots:
   - {fileID: 1371718024}
   - {fileID: 226894459}
   - {fileID: 111767191}
+  - {fileID: 2585082827687368419}
