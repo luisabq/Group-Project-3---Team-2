@@ -12,10 +12,21 @@ public class Portal : MonoBehaviour
     private bool ignoreTrigger;
     private bool canUse = true;
 
+    [Header("Steam System")]
+    public PlayerMovement playerMovement; 
+    public int steamRequirement;
+    public bool autoDeactivate;
+    private bool deactivated; 
+
+    
+    
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (ignoreTrigger || !canUse) return;
 
+        
         Rigidbody rb = other.GetComponentInParent<Rigidbody>();
         if (rb == null) return;
 
@@ -25,7 +36,15 @@ public class Portal : MonoBehaviour
             return;
         }
 
-        StartCoroutine(Teleport(rb));
+        if (steamRequirement <= playerMovement.activeSteamReceptors && !deactivated)
+        {
+            Debug.Log("Steam req met!");
+            StartCoroutine(Teleport(rb));
+        }
+        else
+        {
+            Debug.Log("Steam req not met D:");
+        }
     }
 
     private IEnumerator Teleport(Rigidbody rb)
@@ -59,5 +78,22 @@ public class Portal : MonoBehaviour
 
         canUse = true;
         linkedPortal.canUse = true;
+
+        if (autoDeactivate)
+            deactivated = true;
+        
+        
+        Destroy(linkedPortal);
+        Destroy(this);
+
+
     }
+
+
+
+    private void Start()
+    {
+        GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
+
 }

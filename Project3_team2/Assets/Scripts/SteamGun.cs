@@ -12,6 +12,8 @@ public class SteamGun : MonoBehaviour
 
     public bool equipped = false; 
 
+   
+
 
     void Start()
     {

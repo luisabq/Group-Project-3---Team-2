@@ -5,6 +5,11 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("PlayerStats")]
+    public int activeSteamReceptors;
+    public bool onSteamTimer = false;
+
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -60,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        onSteamTimer = false; 
     }
 
     private void Update()
@@ -74,6 +80,11 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = groundDrag;
         else
             rb.linearDamping = 0;
+
+        if (!onSteamTimer)
+        {
+            activeSteamReceptors = 0;
+        }
     }
 
     private void FixedUpdate()
