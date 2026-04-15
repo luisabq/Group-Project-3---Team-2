@@ -91,6 +91,8 @@ public class RecallAbility : MonoBehaviour
         spawnedPortal = Instantiate(Portal, recordPosition, portalRotation);
         spawnedPortal.SetActive(true);
 
+        Debug.Log("SET RECALL: " + playerRoot.position);
+
         // setup portal camera to follow portal
         if (portalCamera != null && usingCam)
         {
@@ -130,7 +132,8 @@ public class RecallAbility : MonoBehaviour
         recallTeleport.Play(); 
         
         Debug.Log("Script off");
-        playerRoot.position = recordPosition;
+        Debug.Log("RECALL TO: " + recordPosition);
+        rb.position = recordPosition;
         playerObj.forward = recordDirection;
         GetComponent<PlayerMovement>().enabled = false;
         rb.linearVelocity = recordDirection * currentSpeed;
