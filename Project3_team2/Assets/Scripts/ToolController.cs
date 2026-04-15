@@ -1,7 +1,11 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class PlayerToolController : MonoBehaviour
 {
+
+
     public enum Tool
     {
         Grapple,
@@ -14,6 +18,11 @@ public class PlayerToolController : MonoBehaviour
     public SteamGun steamGun;
 
     private bool isAiming;
+
+    public AudioSource armSwitch;
+    public AudioSource steamSwitch;
+    public AudioSource grappleSwitch;
+
 
     void Update()
     {
@@ -28,12 +37,16 @@ public class PlayerToolController : MonoBehaviour
         {
             currentTool = Tool.Grapple;
             Debug.Log("Grapple Equipped");
+            armSwitch.Play();
+            grappleSwitch.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentTool = Tool.Steam;
             Debug.Log("Steam Equipped");
+            armSwitch.Play();
+            steamSwitch.Play();
         }
     }
 

@@ -16,10 +16,12 @@ public class Portal : MonoBehaviour
     public PlayerMovement playerMovement; 
     public int steamRequirement;
     public bool autoDeactivate;
-    private bool deactivated = false; 
+    private bool deactivated = false;
 
-    
-    
+    private AudioSource teleportSound;
+
+
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -64,6 +66,8 @@ public class Portal : MonoBehaviour
         rb.position = exitPos;
         rb.rotation = linkedPortal.transform.rotation;
 
+        teleportSound.Play();
+
         rb.WakeUp();
 
       
@@ -94,6 +98,7 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         GameObject.Find("Player").GetComponent<PlayerMovement>();
+        teleportSound = GetComponent<AudioSource>();
     }
 
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GrappleSystem : MonoBehaviour
 {
@@ -13,10 +14,15 @@ public class GrappleSystem : MonoBehaviour
 
     private bool isGrappling = false;
     private Vector3 grapplePosition;
+
+    public AudioSource audioSource;
+
+
     public void TryGrapple()
     {
         if (currentTarget != null)
         {
+            audioSource.Play();
             StartGrapple();
         }
     }
@@ -26,6 +32,7 @@ public class GrappleSystem : MonoBehaviour
 
         if (isGrappling)
         {
+            
             MoveToGrapplePoint();
         }
     }

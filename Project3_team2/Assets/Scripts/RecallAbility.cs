@@ -40,6 +40,10 @@ public class RecallAbility : MonoBehaviour
     private bool allowedtoTP = true;
     private Coroutine recallTimer;
 
+    [Header("Audio")]
+    public AudioSource placeRecall;
+    public AudioSource recallTeleport;
+
     private void Start()
     {
         allCams = FindObjectsOfType<CinemachineCamera>();
@@ -69,6 +73,7 @@ public class RecallAbility : MonoBehaviour
         {
             if (recallTimer != null)
                 StopCoroutine(recallTimer);
+            placeRecall.Play();
             recallRadial.gameObject.SetActive(true);
             recallTimer = StartCoroutine(DoActionAfterDelay(teleportTime));
         }
@@ -122,6 +127,7 @@ public class RecallAbility : MonoBehaviour
         float currentSpeed = rb.linearVelocity.magnitude;
 
         // teleport player
+        recallTeleport.Play(); 
         
         Debug.Log("Script off");
         playerRoot.position = recordPosition;

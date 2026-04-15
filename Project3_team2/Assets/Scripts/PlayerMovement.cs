@@ -52,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    public AudioSource slowTimer;
+    public AudioSource fastTimer;
+
     public MovementState state;
 
     public enum MovementState
@@ -76,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (onSteamTimer && steamCoroutine == null)
         {
+            slowTimer.Play();
             steamCoroutine = StartCoroutine(SteamTimerRoutine());
         }
 
@@ -217,14 +221,23 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator SteamTimerRoutine()
     {
-        yield return new WaitForSeconds(steamTimerLength);
+        float triggerTime = steamTimerLength * 0.6f; // when 60% has passed
 
+        // wait until 40% remains
+        yield return new WaitForSeconds(triggerTime);
+
+        slowTimer.Stop();
+        fastTimer.Play();
+
+        // wait the remaining 40%
+        yield return new WaitForSeconds(steamTimerLength - triggerTime);
 
         Debug.Log("Time limit done, active steam now 0");
+        fastTimer.Stop();
         activeSteamReceptors = 0;
         onSteamTimer = false;
 
-        steamCoroutine = null; 
+        steamCoroutine = null;
     }
 
 

@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179531559941960764}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.000000059604638, z: -0, w: 1}
-  m_LocalPosition: {x: -0.476, y: -0.01099968, z: 0.39699936}
+  m_LocalRotation: {x: -0, y: -0.000000059604645, z: -0, w: 1}
+  m_LocalPosition: {x: -0.47601274, y: -0.010998726, z: 0.39700374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49,6 +49,7 @@ MonoBehaviour:
   playerTransform: {fileID: 5928344882349031571}
   steamCollider: {fileID: 8375153450072199751}
   particles: {fileID: 6907957287407727026}
+  steamSound: {fileID: 0}
 --- !u!1 &1972520828962385374
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +221,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2993586805999397526}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: 0.000000014757125, z: -0.0000000020668087, w: 0.9903343}
-  m_LocalPosition: {x: 0, y: 3, z: -7}
+  m_LocalRotation: {x: 0.00000008060538, y: -0.9903344, z: 0.13870093, w: 0.00000057552813}
+  m_LocalPosition: {x: 0.000008136051, y: 3, z: 7.0000153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,8 +529,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2887356936386092054}
   - {fileID: 7501634980400850301}
+  - {fileID: 2887356936386092054}
   m_Father: {fileID: 5928344882349031571}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4858258045112062224
@@ -5673,6 +5674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   activeSteamReceptors: 0
   onSteamTimer: 0
+  steamTimerLength: 0
   walkSpeed: 7
   sprintSpeed: 50
   groundDrag: 5
@@ -5706,6 +5708,9 @@ MonoBehaviour:
   currentTool: 0
   grappleSystem: {fileID: 4192926251279255112}
   steamGun: {fileID: 1520177961621968198}
+  armSwitch: {fileID: 0}
+  steamSwitch: {fileID: 0}
+  grappleSwitch: {fileID: 0}
 --- !u!114 &1718133028423709785
 MonoBehaviour:
   m_ObjectHideFlags: 0

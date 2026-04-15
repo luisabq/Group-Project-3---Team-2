@@ -5,6 +5,8 @@ using System.Collections;
 public class SteamReceptor : MonoBehaviour
 {
 
+
+
     private float collisionTimer = 0f;
     private bool isColliding = false;
     public float requiredTime = 3f;
@@ -15,7 +17,11 @@ public class SteamReceptor : MonoBehaviour
     public float timeLimit; 
     public PlayerMovement playerMovement;
 
-   // private Coroutine steamCoroutine;
+
+    private AudioSource[] audioSources;
+
+
+    // private Coroutine steamCoroutine;
 
 
 
@@ -28,6 +34,9 @@ public class SteamReceptor : MonoBehaviour
         {
             isColliding = true;
             collisionTimer = 0f;
+
+            if(steamable)
+            audioSources[0].Play();
         }
     }
 
@@ -37,11 +46,12 @@ public class SteamReceptor : MonoBehaviour
         {
             Debug.Log("colliding");
             collisionTimer += Time.deltaTime;
+            
 
 
-            
-           
-            
+
+
+
 
             if (collisionTimer >= requiredTime)
             {
@@ -51,6 +61,7 @@ public class SteamReceptor : MonoBehaviour
                 //steamCoroutine = StartCoroutine(SteamTimerRoutine());
                 playerMovement.activeSteamReceptors++;
                 Debug.Log("steam count added, now " +  playerMovement.activeSteamReceptors);
+                audioSources[1].Play();
                 if (playerMovement.onSteamTimer == false)
                 {
                     playerMovement.onSteamTimer = true;
@@ -79,6 +90,7 @@ public class SteamReceptor : MonoBehaviour
     {
         mr = GetComponent<MeshRenderer>();
         GameObject.Find("Player").GetComponent<PlayerMovement>();
+        audioSources = GetComponents<AudioSource>();
     }
 
     void Update()

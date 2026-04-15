@@ -7,7 +7,10 @@ public class SteamGun : MonoBehaviour
     public GameObject steamCollider;
     public GameObject particles;
 
+
     private bool isFiring = false;
+
+    public AudioSource steamSound;
 
     private void Start()
     {
@@ -18,9 +21,9 @@ public class SteamGun : MonoBehaviour
     private void Update()
     {
 
-        transform.position = playerTransform.position + (playerTransform.forward * 1);
+        //transform.position = playerTransform.position + (playerTransform.forward * 1);
 
-        transform.forward = Camera.main.transform.forward;
+        //transform.forward = Camera.main.transform.forward;
 
     }
 
@@ -31,6 +34,9 @@ public class SteamGun : MonoBehaviour
         isFiring = true;
         steamCollider.SetActive(true);
         particles.SetActive(true);
+        steamSound.Play();
+
+
     }
 
     public void StopFire()
@@ -38,5 +44,6 @@ public class SteamGun : MonoBehaviour
         isFiring = false;
         steamCollider.SetActive(false);
         particles.SetActive(false);
+        steamSound.Stop();
     }
 }
