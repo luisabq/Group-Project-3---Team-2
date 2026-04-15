@@ -11,7 +11,7 @@ public class SteamReceptor : MonoBehaviour
     private bool isColliding = false;
     public float requiredTime = 3f;
     public bool steamable = true;
-    MeshRenderer mr; 
+    //MeshRenderer mr; 
 
 
     public float timeLimit; 
@@ -19,6 +19,9 @@ public class SteamReceptor : MonoBehaviour
 
 
     private AudioSource[] audioSources;
+
+    public Light light1;
+    public Light light2;
 
 
     // private Coroutine steamCoroutine;
@@ -62,6 +65,8 @@ public class SteamReceptor : MonoBehaviour
                 playerMovement.activeSteamReceptors++;
                 Debug.Log("steam count added, now " +  playerMovement.activeSteamReceptors);
                 audioSources[1].Play();
+                light1.enabled = true;
+                light2.enabled = true;
                 if (playerMovement.onSteamTimer == false)
                 {
                     playerMovement.onSteamTimer = true;
@@ -88,9 +93,12 @@ public class SteamReceptor : MonoBehaviour
 
     void Start()
     {
-        mr = GetComponent<MeshRenderer>();
+        
+        //mr = GetComponent<MeshRenderer>();
         GameObject.Find("Player").GetComponent<PlayerMovement>();
         audioSources = GetComponents<AudioSource>();
+        light1.enabled = false;
+        light2.enabled = false;
     }
 
     void Update()
@@ -98,8 +106,18 @@ public class SteamReceptor : MonoBehaviour
         if (playerMovement.onSteamTimer == false)
             steamable = true;
         if (steamable)
-            mr.enabled = true;
-        else mr.enabled = false;
+        {
+            light1.enabled = false;
+            light2.enabled = false;
+
+            //mr.enabled = true;
+        }
+        else 
+        {
+           // mr.enabled = false;
+            light1.enabled = true;
+            light2.enabled = true;
+        }
 
     }
 
