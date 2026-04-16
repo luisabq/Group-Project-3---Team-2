@@ -2282,7 +2282,7 @@ GameObject:
   - component: {fileID: 1885436395}
   - component: {fileID: 1885436397}
   m_Layer: 5
-  m_Name: UIDocument
+  m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2338,6 +2338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4ac5d2472f144ccbf228d45ac4d531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::hudScript
+  uiDocument: {fileID: 1885436395}
   outIcon: {fileID: 2800000, guid: 608b97dd424a04e3a8607dc535fe4b95, type: 3}
   grappleIcon: {fileID: 2800000, guid: 00014100cda714e5faf668682187772b, type: 3}
   steamIcon: {fileID: 2800000, guid: 4133e3aace612490a8e0c962f5a20f48, type: 3}

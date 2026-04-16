@@ -3,52 +3,47 @@ using UnityEngine.UIElements;
 
 public class hudScript : MonoBehaviour
 {
-    private UIDocument _document;
-    private VisualElement _root;
+    public UIDocument uiDocument;
+    private VisualElement selectedAction;
 
-    private VisualElement _selectedAction;
-
-    [Header("Action Icons")]
-    public Texture2D outIcon;
     public Texture2D grappleIcon;
     public Texture2D steamIcon;
 
-    private void Awake()
+    private void Start()
     {
-        _document = GetComponent<UIDocument>();
-        _root = _document.rootVisualElement;
+        var root = uiDocument.rootVisualElement;
+        selectedAction = root.Q<VisualElement>("selectedAction");
 
-        // HUD should not block mouse input
-        _root.pickingMode = PickingMode.Ignore;
+        if (selectedAction == null)
+        {
+            Debug.LogError("selectedAction not found!");
+            return;
+        }
 
-        // NEW NAME
-        _selectedAction = _root.Q<VisualElement>("selectedAction");
-
-        if (_selectedAction == null)
-            Debug.LogWarning("selectedAction not found!");
+        // HUD should not block mouse (important for your pause menu issue earlier)
+        root.pickingMode = PickingMode.Ignore;
     }
 
-    // 🔹 Set icon directly
-    public void SetAction(Texture2D icon)
+    private void Update()
     {
-        if (_selectedAction != null)
-            _selectedAction.style.backgroundImage = new StyleBackground(icon);
+        // Press 1 → Grapple
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SetAction(grappleIcon);
+        }
+
+        // Press 2 → Steam
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetAction(steamIcon);
+        }
     }
 
-    // 🔹 Helper functions (cleaner to call from gameplay scripts)
-
-    public void ShowOut()
+    private void SetAction(Texture2D icon)
     {
-        SetAction(outIcon);
-    }
+        if (selectedAction == null) return;
 
-    public void ShowGrapple()
-    {
-        SetAction(grappleIcon);
-    }
-
-    public void ShowSteam()
-    {
-        SetAction(steamIcon);
+        selectedAction.style.backgroundImage = new StyleBackground(icon);
+        selectedAction.style.display = DisplayStyle.Flex;
     }
 }
