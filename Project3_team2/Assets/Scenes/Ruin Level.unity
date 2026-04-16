@@ -25450,6 +25450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower_TopRuined_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2967438057820275468, guid: 7574a947b9e502a449535dead95897ce, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6127532643959265692, guid: 7574a947b9e502a449535dead95897ce, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.75801
@@ -25457,6 +25461,10 @@ PrefabInstance:
     - target: {fileID: 6127532643959265692, guid: 7574a947b9e502a449535dead95897ce, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.135
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026371836527662770, guid: 7574a947b9e502a449535dead95897ce, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28408,6 +28416,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 764270204572107102, guid: 4d817103f41581a49a300216688651b7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1550608669516929070, guid: 4d817103f41581a49a300216688651b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 25.4922
@@ -28463,6 +28475,10 @@ PrefabInstance:
     - target: {fileID: 2220009574105268884, guid: 4d817103f41581a49a300216688651b7, type: 3}
       propertyPath: m_Name
       value: Tower_Door (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220009574105268884, guid: 4d817103f41581a49a300216688651b7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
