@@ -6,7 +6,6 @@ public class hudScript : MonoBehaviour
     public UIDocument uiDocument;
     private VisualElement selectedAction;
 
-    public Texture2D outIcon;
     public Texture2D grappleIcon;
     public Texture2D steamIcon;
 
@@ -21,28 +20,23 @@ public class hudScript : MonoBehaviour
             return;
         }
 
+        // HUD should not block mouse (important for your pause menu issue earlier)
         root.pickingMode = PickingMode.Ignore;
     }
 
-    public void ShowOut()
+    private void Update()
     {
-        SetAction(outIcon);
-    }
+        // Press 1 → Grapple
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SetAction(grappleIcon);
+        }
 
-    public void ShowGrapple()
-    {
-        SetAction(grappleIcon);
-    }
-
-    public void ShowSteam()
-    {
-        SetAction(steamIcon);
-    }
-
-    public void HideAction()
-    {
-        if (selectedAction != null)
-            selectedAction.style.display = DisplayStyle.None;
+        // Press 2 → Steam
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetAction(steamIcon);
+        }
     }
 
     private void SetAction(Texture2D icon)
