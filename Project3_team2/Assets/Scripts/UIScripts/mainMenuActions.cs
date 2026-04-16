@@ -61,7 +61,7 @@ public class mainMenuActions : MonoBehaviour
     private void OnPlayButtonClick(ClickEvent evt)
     {
         Debug.Log("Play clicked");
-        SceneManager.LoadScene("Hub Scene");
+        SceneManager.LoadScene("Ruin Level");
     }
 
     private void OnHowToPlayButtonClick(ClickEvent evt)
