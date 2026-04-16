@@ -38,7 +38,7 @@ public class winScript : MonoBehaviour
     private void OnRestartButtonClick(ClickEvent evt)
     {
         Debug.Log("Restart clicked");
-        SceneManager.LoadScene("Hub Scene");
+        SceneManager.LoadScene("Ruin Level");
     }
 
     private void OnMenuButtonClick(ClickEvent evt)
