@@ -3,39 +3,26 @@ using UnityEngine.UIElements;
 
 public class hudScript : MonoBehaviour
 {
-    private UIDocument _document;
-    private VisualElement _root;
+    public UIDocument uiDocument;
+    private VisualElement selectedAction;
 
-    private VisualElement _selectedAction;
-
-    [Header("Action Icons")]
     public Texture2D outIcon;
     public Texture2D grappleIcon;
     public Texture2D steamIcon;
 
-    private void Awake()
+    private void Start()
     {
-        _document = GetComponent<UIDocument>();
-        _root = _document.rootVisualElement;
+        var root = uiDocument.rootVisualElement;
+        selectedAction = root.Q<VisualElement>("selectedAction");
 
-        // HUD should not block mouse input
-        _root.pickingMode = PickingMode.Ignore;
+        if (selectedAction == null)
+        {
+            Debug.LogError("selectedAction not found!");
+            return;
+        }
 
-        // NEW NAME
-        _selectedAction = _root.Q<VisualElement>("selectedAction");
-
-        if (_selectedAction == null)
-            Debug.LogWarning("selectedAction not found!");
+        root.pickingMode = PickingMode.Ignore;
     }
-
-    // 🔹 Set icon directly
-    public void SetAction(Texture2D icon)
-    {
-        if (_selectedAction != null)
-            _selectedAction.style.backgroundImage = new StyleBackground(icon);
-    }
-
-    // 🔹 Helper functions (cleaner to call from gameplay scripts)
 
     public void ShowOut()
     {
@@ -50,5 +37,19 @@ public class hudScript : MonoBehaviour
     public void ShowSteam()
     {
         SetAction(steamIcon);
+    }
+
+    public void HideAction()
+    {
+        if (selectedAction != null)
+            selectedAction.style.display = DisplayStyle.None;
+    }
+
+    private void SetAction(Texture2D icon)
+    {
+        if (selectedAction == null) return;
+
+        selectedAction.style.backgroundImage = new StyleBackground(icon);
+        selectedAction.style.display = DisplayStyle.Flex;
     }
 }
