@@ -4,44 +4,51 @@ using UnityEngine.UIElements;
 public class hudScript : MonoBehaviour
 {
     private UIDocument _document;
+    private VisualElement _root;
 
-    private VisualElement _outIcon;
-    private VisualElement _grappleIcon;
-    private VisualElement _steamIcon;
+    private VisualElement _selectedAction;
+
+    [Header("Action Icons")]
+    public Texture2D outIcon;
+    public Texture2D grappleIcon;
+    public Texture2D steamIcon;
 
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
+        _root = _document.rootVisualElement;
 
-        _outIcon = _document.rootVisualElement.Q<VisualElement>("out");
-        _grappleIcon = _document.rootVisualElement.Q<VisualElement>("grapple");
-        _steamIcon = _document.rootVisualElement.Q<VisualElement>("steam");
+        // HUD should not block mouse input
+        _root.pickingMode = PickingMode.Ignore;
 
-        if (_outIcon == null)
-            Debug.LogWarning("out icon not found!");
+        // NEW NAME
+        _selectedAction = _root.Q<VisualElement>("selectedAction");
 
-        if (_grappleIcon == null)
-            Debug.LogWarning("grapple icon not found!");
-
-        if (_steamIcon == null)
-            Debug.LogWarning("steam icon not found!");
+        if (_selectedAction == null)
+            Debug.LogWarning("selectedAction not found!");
     }
 
-    public void ShowOut(bool show)
+    // 🔹 Set icon directly
+    public void SetAction(Texture2D icon)
     {
-        if (_outIcon != null)
-            _outIcon.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        if (_selectedAction != null)
+            _selectedAction.style.backgroundImage = new StyleBackground(icon);
     }
 
-    public void ShowGrapple(bool show)
+    // 🔹 Helper functions (cleaner to call from gameplay scripts)
+
+    public void ShowOut()
     {
-        if (_grappleIcon != null)
-            _grappleIcon.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        SetAction(outIcon);
     }
 
-    public void ShowSteam(bool show)
+    public void ShowGrapple()
     {
-        if (_steamIcon != null)
-            _steamIcon.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        SetAction(grappleIcon);
+    }
+
+    public void ShowSteam()
+    {
+        SetAction(steamIcon);
     }
 }
