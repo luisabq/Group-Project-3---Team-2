@@ -15,6 +15,9 @@ public class mainMenuActions : MonoBehaviour
 
     private void Awake()
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+
         _document = GetComponent<UIDocument>();
 
         _playButton = _document.rootVisualElement.Q<Button>("playButton");
@@ -60,25 +63,21 @@ public class mainMenuActions : MonoBehaviour
 
     private void OnPlayButtonClick(ClickEvent evt)
     {
-        Debug.Log("Play clicked");
         SceneManager.LoadScene("Ruin Level");
     }
 
     private void OnHowToPlayButtonClick(ClickEvent evt)
     {
-        Debug.Log("How To Play clicked");
         SceneManager.LoadScene("HowToPlay");
     }
 
     private void OnQuitButtonClick(ClickEvent evt)
     {
-        Debug.Log("Quit clicked");
         Application.Quit();
     }
 
     private void OnCreditButtonClick(ClickEvent evt)
     {
-        Debug.Log("Credits clicked");
         SceneManager.LoadScene("Credits");
     }
 }

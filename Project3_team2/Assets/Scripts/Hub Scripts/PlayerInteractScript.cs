@@ -1,20 +1,27 @@
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class PlayerInteract : MonoBehaviour
 {
     public float interactRange = 3f;
     public Camera cam;
 
+    [Header("UI")]
+    public GameObject interactText;
+
+    private IInteractable currentInteractable;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        CheckForInteractable();
+
+        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
         {
-            Debug.Log("Pressed E");
-            TryInteract();
+            currentInteractable.Interact();
         }
     }
 
-    void TryInteract()
+    void CheckForInteractable()
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
@@ -23,14 +30,22 @@ public class PlayerInteract : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactRange, layerMask))
         {
-            Debug.Log("Hit: " + hit.collider.name);
-
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+
+            if (interactable == null)
+            {
+                interactable = hit.collider.GetComponentInParent<IInteractable>();
+            }
 
             if (interactable != null)
             {
-                interactable.Interact();
+                currentInteractable = interactable;
+                interactText.SetActive(true);
+                return;
             }
         }
+
+        currentInteractable = null;
+        interactText.SetActive(false);
     }
 }
