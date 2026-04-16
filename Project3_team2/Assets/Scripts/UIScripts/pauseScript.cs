@@ -5,37 +5,43 @@ using UnityEngine.SceneManagement;
 public class pauseScript : MonoBehaviour
 {
     private UIDocument _document;
+    private VisualElement _root;
 
     private Button _backButton;
     private Button _settingsButton;
-    private Button _quitButton;
+    private Button _menuButton;
+
+    [Header("Gameplay References")]
+    public PlayerMovement playerMovement;
+    public ThirdPersonCam thirdPersonCam;
 
     private bool _isPaused = false;
 
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
+        _root = _document.rootVisualElement;
 
-        _backButton = _document.rootVisualElement.Q<Button>("backButton");
-        _settingsButton = _document.rootVisualElement.Q<Button>("settingsButton");
-        _quitButton = _document.rootVisualElement.Q<Button>("quitButton");
+        _backButton = _root.Q<Button>("backButton");
+        _settingsButton = _root.Q<Button>("settingsButton");
+        _menuButton = _root.Q<Button>("menuButton");
 
         if (_backButton != null)
-            _backButton.RegisterCallback<ClickEvent>(OnBackClicked);
+            _backButton.clicked += OnBackClicked;
         else
             Debug.LogWarning("backButton not found!");
 
         if (_settingsButton != null)
-            _settingsButton.RegisterCallback<ClickEvent>(OnSettingsClicked);
+            _settingsButton.clicked += OnSettingsClicked;
         else
             Debug.LogWarning("settingsButton not found!");
 
-        if (_quitButton != null)
-            _quitButton.RegisterCallback<ClickEvent>(OnQuitClicked);
+        if (_menuButton != null)
+            _menuButton.clicked += OnMenuClicked;
         else
-            Debug.LogWarning("quitButton not found!");
+            Debug.LogWarning("menuButton not found!");
 
-        gameObject.SetActive(false);
+        _root.style.display = DisplayStyle.None;
     }
 
     private void Update()
@@ -49,48 +55,71 @@ public class pauseScript : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        if (_backButton != null)
-            _backButton.UnregisterCallback<ClickEvent>(OnBackClicked);
-
-        if (_settingsButton != null)
-            _settingsButton.UnregisterCallback<ClickEvent>(OnSettingsClicked);
-
-        if (_quitButton != null)
-            _quitButton.UnregisterCallback<ClickEvent>(OnQuitClicked);
-    }
-
     private void PauseGame()
     {
         _isPaused = true;
         Time.timeScale = 0f;
-        gameObject.SetActive(true);
+        _root.style.display = DisplayStyle.Flex;
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        if (thirdPersonCam != null)
+            thirdPersonCam.enabled = false;
+
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
 
     private void ResumeGame()
     {
         _isPaused = false;
         Time.timeScale = 1f;
-        gameObject.SetActive(false);
+        _root.style.display = DisplayStyle.None;
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+
+        if (thirdPersonCam != null)
+            thirdPersonCam.enabled = true;
+
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void OnBackClicked(ClickEvent evt)
+    private void OnBackClicked()
     {
-        Debug.Log("Resume clicked");
+        Debug.Log("Back clicked");
         ResumeGame();
     }
 
-    private void OnSettingsClicked(ClickEvent evt)
+    private void OnSettingsClicked()
     {
         Debug.Log("Settings clicked");
-        // Add settings logic here later
     }
 
-    private void OnQuitClicked(ClickEvent evt)
+    private void OnMenuClicked()
     {
-        Debug.Log("Quit to menu clicked");
+        Debug.Log("Menu clicked");
+
         Time.timeScale = 1f;
+        _isPaused = false;
+
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void OnDisable()
+    {
+        if (_backButton != null)
+            _backButton.clicked -= OnBackClicked;
+
+        if (_settingsButton != null)
+            _settingsButton.clicked -= OnSettingsClicked;
+
+        if (_menuButton != null)
+            _menuButton.clicked -= OnMenuClicked;
     }
 }
