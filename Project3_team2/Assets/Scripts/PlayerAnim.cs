@@ -2,22 +2,25 @@ using UnityEngine;
 
 public class PlayerAnim : MonoBehaviour
 {
-    public Animator animator; 
+    public Animator animator;
     public Rigidbody rb;
+    public FootstepSound footstepSound;
 
     void Update()
     {
-        float speed = rb.linearVelocity.magnitude;
-        
-        animator.SetFloat("Speed", speed);
+        float speed = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude;
+        float yVel = rb.linearVelocity.y;
 
-        if (Input.GetMouseButton(1)) 
+        animator.SetFloat("Speed", speed);
+        animator.SetFloat("YVelocity", yVel);
+
+        animator.SetBool("Grounded", footstepSound.isGrounded);
+
+        animator.SetBool("Aiming", Input.GetMouseButton(1));
+
+        if (Input.GetKeyDown(KeyCode.Space) && footstepSound.isGrounded)
         {
-            animator.SetBool("Aiming", true);
-        }
-        else
-        {
-            animator.SetBool("Aiming", false);
+            animator.SetTrigger("Jump");
         }
     }
 }

@@ -14,7 +14,7 @@ public class FootstepSound : MonoBehaviour
     public LayerMask groundMask;
     public float groundCheckDistance = 0.3f;
 
-    private bool isGrounded;
+    public bool isGrounded;
 
     void Update()
     {
@@ -36,7 +36,7 @@ public class FootstepSound : MonoBehaviour
         if (!isGrounded) return;
         if (footstepClips.Length == 0 || audioSource == null) return;
 
-        // optional: stop tiny jitter footsteps when barely moving
+        
         Vector3 horizontalVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         if (horizontalVel.magnitude < 0.2f) return;
 
