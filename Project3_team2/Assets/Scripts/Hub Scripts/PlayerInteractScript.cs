@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using TMPro;
 
 public class PlayerInteract : MonoBehaviour
 {
     public float interactRange = 3f;
+    public float interactRadius = 0.5f;
     public Camera cam;
 
     [Header("UI")]
@@ -28,7 +28,8 @@ public class PlayerInteract : MonoBehaviour
 
         int layerMask = ~LayerMask.GetMask("Player");
 
-        if (Physics.Raycast(ray, out hit, interactRange, layerMask))
+        // testing spherecast to be more forgiving
+        if (Physics.SphereCast(ray, interactRadius, out hit, interactRange, layerMask))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
@@ -40,12 +41,16 @@ public class PlayerInteract : MonoBehaviour
             if (interactable != null)
             {
                 currentInteractable = interactable;
-                interactText.SetActive(true);
+
+                if (interactText != null)
+                    interactText.SetActive(true);
+
                 return;
             }
         }
-
         currentInteractable = null;
-        interactText.SetActive(false);
+
+        if (interactText != null)
+            interactText.SetActive(false);
     }
 }
