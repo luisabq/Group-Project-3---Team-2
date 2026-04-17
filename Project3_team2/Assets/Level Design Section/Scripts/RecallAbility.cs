@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class RecallAbility : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class RecallAbility : MonoBehaviour
     public Rigidbody rb;
     public Transform playerRoot;
     public Transform playerObj;
+
+    [Header("UI")]
+    public Image recallRadial;
 
     [Header("Portal")]
     public GameObject Portal;
@@ -34,18 +38,21 @@ public class RecallAbility : MonoBehaviour
     public bool usingCam;
 
     private bool allowedtoTP = true;
+    private Coroutine recallTimer;
 
     private void Start()
     {
         allCams = FindObjectsOfType<CinemachineCamera>();
+        recallRadial.gameObject.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SetRecallPoint();
             allowedtoTP = true;
+            SetRecallPoint();
+            
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -59,7 +66,12 @@ public class RecallAbility : MonoBehaviour
     public void SetRecallPoint()
     {
         if (hasTimer)
-            StartCoroutine(DoActionAfterDelay(teleportTime));
+        {
+            if (recallTimer != null)
+                StopCoroutine(recallTimer);
+            recallRadial.gameObject.SetActive(true);
+            recallTimer = StartCoroutine(DoActionAfterDelay(teleportTime));
+        }
 
 
         Destroy(spawnedPortal);
@@ -91,6 +103,17 @@ public class RecallAbility : MonoBehaviour
 
     public void Recall()
     {
+        if (recallTimer != null)
+        {
+            StopCoroutine(recallTimer);
+            recallTimer = null;
+        }
+        if (recallRadial != null)
+        {
+            recallRadial.fillAmount = 0f;
+            recallRadial.gameObject.SetActive(false);
+        }
+
 
         allowedtoTP = false;
         if (spawnedPortal != null)
@@ -129,7 +152,7 @@ public class RecallAbility : MonoBehaviour
 
             // restore after delay
             StartCoroutine(RestoreCameraPriorities());
-            allowedtoTP = true;
+            
         }
 
         Debug.Log("Recalled with speed: " + currentSpeed);
@@ -149,20 +172,36 @@ public class RecallAbility : MonoBehaviour
     private IEnumerator DoActionAfterDelay(float delay)
     {
         if (delay < 0f) delay = 0f;
-        yield return new WaitForSeconds(delay);
-        if (allowedtoTP)       StartCoroutine(MoveDelay(1.0f));
 
+        float timeElapsed = 0f;
+
+        // start full
+        if (recallRadial != null)
+            recallRadial.fillAmount = 1f;
+
+        while (timeElapsed < delay)
+        {
+            timeElapsed += Time.deltaTime;
+
+            if (recallRadial != null)
+                recallRadial.fillAmount = 1 - (timeElapsed / delay);
+
+            yield return null;
+        }
+
+        // ensure empty
+        if (recallRadial != null)
+            recallRadial.fillAmount = 0f;
+
+        if (allowedtoTP)
+            StartCoroutine(MoveDelay(1.0f));
     }
 
     private IEnumerator MoveDelay(float moveDelay)
     {
-        if (allowedtoTP)
-        {
-
-            Recall();
-            yield return new WaitForSeconds(moveDelay);
-            GetComponent<PlayerMovement>().enabled = true;
-            Debug.Log("Script on");
-        }
+        Recall();
+        yield return new WaitForSeconds(moveDelay);
+        GetComponent<PlayerMovement>().enabled = true;
+        Debug.Log("Script on");
     }
 }
