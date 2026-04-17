@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5818925951707128131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4892787106971516961}
+  m_Layer: 0
+  m_Name: HeistPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4892787106971516961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818925951707128131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 263.39978, y: 0.0075, z: -58.04807}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5078871710298549814}
+  - {fileID: 7725121649652795806}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4751719356132313565
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4892787106971516961}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3777438730644226528, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30c837f83b79c02448ae83e258175785, type: 2}
+    - target: {fileID: -3777438730644226528, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 128e81caa90093c41865432c91ea46a2, type: 2}
+    - target: {fileID: -3777438730644226528, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 31d755b0bbeba2c419b6bdc4783a222d, type: 2}
+    - target: {fileID: 919132149155446097, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_Name
+      value: HeistPlatform01_2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 244426786597877979}
+  m_SourcePrefab: {fileID: 100100000, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+--- !u!4 &5078871710298549814 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+  m_PrefabInstance: {fileID: 4751719356132313565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5561970028675363980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+  m_PrefabInstance: {fileID: 4751719356132313565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &244426786597877979
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5561970028675363980}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6201906627917628066, guid: bdf792dd66f32f440aa8420f97a11de5, type: 3}
+--- !u!1001 &7836153711855496821
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4892787106971516961}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_Name
+      value: HeistPlatform01_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324563282245301405, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 128e81caa90093c41865432c91ea46a2, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6988597189608928834}
+  m_SourcePrefab: {fileID: 100100000, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+--- !u!1 &6953264913872343844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+  m_PrefabInstance: {fileID: 7836153711855496821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &6988597189608928834
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953264913872343844}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1915140831505645289, guid: bd0d33969eb50404d866117b99011f92, type: 3}
+--- !u!4 &7725121649652795806 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+  m_PrefabInstance: {fileID: 7836153711855496821}
+  m_PrefabAsset: {fileID: 0}
