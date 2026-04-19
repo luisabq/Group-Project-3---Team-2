@@ -1,11 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class PlayerToolController : MonoBehaviour
 {
-
-
     public enum Tool
     {
         Grapple,
@@ -23,7 +20,6 @@ public class PlayerToolController : MonoBehaviour
     public AudioSource steamSwitch;
     public AudioSource grappleSwitch;
 
-
     void Update()
     {
         HandleSwitch();
@@ -33,20 +29,57 @@ public class PlayerToolController : MonoBehaviour
 
     void HandleSwitch()
     {
+        //number keys
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            currentTool = Tool.Grapple;
-            Debug.Log("Grapple Equipped");
-            armSwitch.Play();
-            grappleSwitch.Play();
+            SetTool(Tool.Grapple);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            currentTool = Tool.Steam;
-            Debug.Log("Steam Equipped");
-            armSwitch.Play();
-            steamSwitch.Play();
+            SetTool(Tool.Steam);
+        }
+
+        //mouse wheel
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (scroll > 0f)
+        {
+            CycleTool(1);
+        }
+        else if (scroll < 0f)
+        {
+            CycleTool(-1);
+        }
+    }
+
+    void CycleTool(int direction)
+    {
+        int toolCount = System.Enum.GetValues(typeof(Tool)).Length;
+        int newIndex = ((int)currentTool + direction + toolCount) % toolCount;
+
+        SetTool((Tool)newIndex);
+    }
+
+    void SetTool(Tool newTool)
+    {
+        if (currentTool == newTool) return;
+
+        currentTool = newTool;
+
+        armSwitch.Play();
+
+        switch (currentTool)
+        {
+            case Tool.Grapple:
+                Debug.Log("Grapple Equipped");
+                grappleSwitch.Play();
+                break;
+
+            case Tool.Steam:
+                Debug.Log("Steam Equipped");
+                steamSwitch.Play();
+                break;
         }
     }
 

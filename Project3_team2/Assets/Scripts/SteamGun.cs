@@ -3,14 +3,16 @@ using UnityEngine;
 public class SteamGun : MonoBehaviour
 {
     public Transform playerTransform;
+    public Transform cameraTransform;
 
     public GameObject steamCollider;
     public GameObject particles;
 
-
     private bool isFiring = false;
 
     public AudioSource steamSound;
+
+    public Vector3 offset = new Vector3(0f, 0f, 0f);
 
     private void Start()
     {
@@ -20,11 +22,11 @@ public class SteamGun : MonoBehaviour
 
     private void Update()
     {
+        Vector3 worldOffset = cameraTransform.TransformDirection(offset);
 
-        //transform.position = playerTransform.position + (playerTransform.forward * 1);
+        transform.position = cameraTransform.position + worldOffset;
 
-        //transform.forward = Camera.main.transform.forward;
-
+        transform.rotation = cameraTransform.rotation;
     }
 
     public void Fire()
@@ -35,8 +37,6 @@ public class SteamGun : MonoBehaviour
         steamCollider.SetActive(true);
         particles.SetActive(true);
         steamSound.Play();
-
-
     }
 
     public void StopFire()

@@ -9,6 +9,10 @@ public class hudScript : MonoBehaviour
     public Texture2D grappleIcon;
     public Texture2D steamIcon;
 
+    public PlayerToolController toolController;
+
+    private PlayerToolController.Tool lastTool;
+
     private void Start()
     {
         var root = uiDocument.rootVisualElement;
@@ -20,22 +24,33 @@ public class hudScript : MonoBehaviour
             return;
         }
 
-        // HUD should not block mouse (important for your pause menu issue earlier)
         root.pickingMode = PickingMode.Ignore;
+
+        UpdateHUD(toolController.currentTool);
+        lastTool = toolController.currentTool;
     }
 
     private void Update()
     {
-        // Press 1 → Grapple
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        
+        if (toolController.currentTool != lastTool)
         {
-            SetAction(grappleIcon);
+            UpdateHUD(toolController.currentTool);
+            lastTool = toolController.currentTool;
         }
+    }
 
-        // Press 2 → Steam
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+    void UpdateHUD(PlayerToolController.Tool tool)
+    {
+        switch (tool)
         {
-            SetAction(steamIcon);
+            case PlayerToolController.Tool.Grapple:
+                SetAction(grappleIcon);
+                break;
+
+            case PlayerToolController.Tool.Steam:
+                SetAction(steamIcon);
+                break;
         }
     }
 
