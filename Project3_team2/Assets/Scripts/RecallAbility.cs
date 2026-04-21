@@ -58,7 +58,7 @@ public class RecallAbility : MonoBehaviour
             SetRecallPoint();
             
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T) && spawnedPortal.activeSelf)
         {
             
             StartCoroutine(MoveDelay(1.0f));
