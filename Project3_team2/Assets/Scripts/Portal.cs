@@ -18,6 +18,8 @@ public class Portal : MonoBehaviour
     public bool autoDeactivate;
     private bool deactivated = false;
 
+    public GameObject portalTexture; 
+
     private AudioSource teleportSound;
 
 
@@ -42,10 +44,12 @@ public class Portal : MonoBehaviour
         {
             Debug.Log("Steam req met!");
             StartCoroutine(Teleport(rb));
+            
         }
         else
         {
             Debug.Log("Steam req not met D:");
+            portalTexture.SetActive(false);
         }
     }
 
@@ -97,8 +101,19 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
+        portalTexture.SetActive(false);
         GameObject.Find("Player").GetComponent<PlayerMovement>();
         teleportSound = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (steamRequirement <= playerMovement.activeSteamReceptors && !deactivated)
+            portalTexture.SetActive(true);
+
+        if (playerMovement.activeSteamReceptors == 0)
+            portalTexture.SetActive(false);
+
     }
 
 }
