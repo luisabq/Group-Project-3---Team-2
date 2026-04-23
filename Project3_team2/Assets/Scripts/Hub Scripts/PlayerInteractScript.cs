@@ -4,7 +4,6 @@ public class PlayerInteract : MonoBehaviour
 {
     public float interactRange = 3f;
     public float interactRadius = 0.5f;
-    public Camera cam;
 
     [Header("UI")]
     public GameObject interactText;
@@ -13,6 +12,9 @@ public class PlayerInteract : MonoBehaviour
 
     void Update()
     {
+        // stop interaction while paused
+        if (Time.timeScale == 0f) return;
+
         CheckForInteractable();
 
         if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
@@ -23,20 +25,25 @@ public class PlayerInteract : MonoBehaviour
 
     void CheckForInteractable()
     {
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        Camera cam = Camera.main;
+
+        if (cam == null)
+        {
+            Debug.LogWarning("No Main Camera found!");
+            return;
+        }
+
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
         int layerMask = ~LayerMask.GetMask("Player");
 
-        // testing spherecast to be more forgiving
         if (Physics.SphereCast(ray, interactRadius, out hit, interactRange, layerMask))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
             if (interactable == null)
-            {
                 interactable = hit.collider.GetComponentInParent<IInteractable>();
-            }
 
             if (interactable != null)
             {
@@ -48,6 +55,7 @@ public class PlayerInteract : MonoBehaviour
                 return;
             }
         }
+
         currentInteractable = null;
 
         if (interactText != null)
