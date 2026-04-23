@@ -3747,11 +3747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4210330055278243880, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.3057837
+      value: -6.8393188
       objectReference: {fileID: 0}
     - target: {fileID: 4210330055278243880, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.2383968
+      value: 1.3719616
       objectReference: {fileID: 0}
     - target: {fileID: 4210330055278243880, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3943,11 +3943,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5624629926322488897, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.187685
+      value: -9.721221
       objectReference: {fileID: 0}
     - target: {fileID: 5624629926322488897, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.18574333
+      value: 0.31930828
       objectReference: {fileID: 0}
     - target: {fileID: 5624629926322488897, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4059,11 +4059,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6494813820369651085, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.415067
+      value: -10.948602
       objectReference: {fileID: 0}
     - target: {fileID: 6494813820369651085, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.8229156
+      value: -2.689351
       objectReference: {fileID: 0}
     - target: {fileID: 6494813820369651085, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4127,7 +4127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7198527543881083570, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.43
+      value: 5.88
       objectReference: {fileID: 0}
     - target: {fileID: 7198527543881083570, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4281,6 +4281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZachMesaRock37
       objectReference: {fileID: 0}
+    - target: {fileID: 2491700087355639424, guid: 3c9f4316ab3e6aa46a0aad15d6200521, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3017302536753568826, guid: 3c9f4316ab3e6aa46a0aad15d6200521, type: 3}
       propertyPath: m_LocalScale.x
       value: 12.986
@@ -4332,6 +4336,10 @@ PrefabInstance:
     - target: {fileID: 3017302536753568826, guid: 3c9f4316ab3e6aa46a0aad15d6200521, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906415028652830536, guid: 3c9f4316ab3e6aa46a0aad15d6200521, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28084,6 +28092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1470209933}
     m_Modifications:
+    - target: {fileID: 1642789078972928503, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7017732905509196870, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.2968006
@@ -28139,6 +28151,10 @@ PrefabInstance:
     - target: {fileID: 7649414862380093180, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
       propertyPath: m_Name
       value: ZachMesaRock36 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649414862380093180, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34539,6 +34555,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1470209933}
     m_Modifications:
+    - target: {fileID: 1642789078972928503, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7017732905509196870, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.2968
@@ -34594,6 +34614,10 @@ PrefabInstance:
     - target: {fileID: 7649414862380093180, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
       propertyPath: m_Name
       value: ZachMesaRock36 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649414862380093180, guid: 4382bc73ae1424f48b7f05f4b69c3a60, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
