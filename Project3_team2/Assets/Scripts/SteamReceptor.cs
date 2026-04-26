@@ -95,7 +95,7 @@ public class SteamReceptor : MonoBehaviour
     {
         
         //mr = GetComponent<MeshRenderer>();
-        GameObject.Find("Player").GetComponent<PlayerMovement>();
+        
         audioSources = GetComponents<AudioSource>();
         light1.enabled = false;
         light2.enabled = false;

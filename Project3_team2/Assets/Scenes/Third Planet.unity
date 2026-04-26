@@ -6961,7 +6961,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381275354}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &381275356
 Camera:
   m_ObjectHideFlags: 0
@@ -11963,6 +11963,10 @@ PrefabInstance:
       propertyPath: timeLimit
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1030122298}
     - target: {fileID: 3595799104147903805, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -55.94
@@ -24428,6 +24432,17 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1030122298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5198871728297386235, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+  m_PrefabInstance: {fileID: 1252415417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7a48f0df79745438f97027fffb5bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1 &1038192320
 GameObject:
   m_ObjectHideFlags: 0
@@ -25803,6 +25818,10 @@ PrefabInstance:
       propertyPath: timeLimit
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1030122298}
     - target: {fileID: 3595799104147903805, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -56.841682
@@ -34115,6 +34134,10 @@ PrefabInstance:
       propertyPath: linkedPortal
       value: 
       objectReference: {fileID: 315918563}
+    - target: {fileID: 8527517908020628094, guid: 5d1df1c9b07c2c84690179036be44c6d, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1030122298}
     - target: {fileID: 8527517908020628094, guid: 5d1df1c9b07c2c84690179036be44c6d, type: 3}
       propertyPath: steamRequirement
       value: 3
@@ -50821,6 +50844,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1248947462}
     - target: {fileID: 8527517908020628094, guid: 5d1df1c9b07c2c84690179036be44c6d, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1030122298}
+    - target: {fileID: 8527517908020628094, guid: 5d1df1c9b07c2c84690179036be44c6d, type: 3}
       propertyPath: steamRequirement
       value: 3
       objectReference: {fileID: 0}
@@ -52949,6 +52976,10 @@ PrefabInstance:
       propertyPath: timeLimit
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1030122298}
     - target: {fileID: 3595799104147903805, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.71

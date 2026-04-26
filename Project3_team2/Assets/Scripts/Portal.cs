@@ -102,7 +102,7 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         portalTexture.SetActive(false);
-        GameObject.Find("Player").GetComponent<PlayerMovement>();
+        
         teleportSound = GetComponent<AudioSource>();
     }
 
