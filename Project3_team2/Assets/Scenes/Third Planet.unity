@@ -1926,7 +1926,7 @@ Transform:
   m_GameObject: {fileID: 106326125}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 21.93, y: -10.49831, z: 24.96}
+  m_LocalPosition: {x: 21.43, y: -10.49831, z: 24.96}
   m_LocalScale: {x: 0.46747, y: 1, z: 3.9251}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10893,6 +10893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Incinerator_Wing_Door
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c1cfcdbfb5189fc478d2352748e00333, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11604,6 +11608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Incinerator_Ledge_Platform (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12039,6 +12047,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
       propertyPath: m_Name
       value: Incinerator_Ledge_Platform (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19805,7 +19817,7 @@ Transform:
   m_GameObject: {fileID: 1013833275}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 21.93, y: -10.49831, z: 24.96}
+  m_LocalPosition: {x: 21.43, y: -10.49831, z: 24.96}
   m_LocalScale: {x: 0.46747, y: 1, z: 3.9251}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25042,6 +25054,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
       propertyPath: m_Name
       value: Incinerator_Ledge_Platform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35275,6 +35291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Incinerator_Wing (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5785175688274701807, guid: b273db45c46ae8d44a0703c469c32a85, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6558017380246009685, guid: b273db45c46ae8d44a0703c469c32a85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.616444
@@ -36176,6 +36196,10 @@ PrefabInstance:
     - target: {fileID: 5785175688274701807, guid: b273db45c46ae8d44a0703c469c32a85, type: 3}
       propertyPath: m_Name
       value: Incinerator_Wing (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785175688274701807, guid: b273db45c46ae8d44a0703c469c32a85, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6558017380246009685, guid: b273db45c46ae8d44a0703c469c32a85, type: 3}
       propertyPath: m_LocalPosition.x
@@ -61335,6 +61359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Incinerator_Wing
       objectReference: {fileID: 0}
+    - target: {fileID: 5785175688274701807, guid: b273db45c46ae8d44a0703c469c32a85, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6558017380246009685, guid: b273db45c46ae8d44a0703c469c32a85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.616444
@@ -61391,6 +61419,10 @@ PrefabInstance:
     - target: {fileID: 7308818232091083611, guid: 35c66991b0c3b25448ad2f5c280217bd, type: 3}
       propertyPath: m_Name
       value: Incinerator_Ledge_Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308818232091083611, guid: 35c66991b0c3b25448ad2f5c280217bd, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7937018035016063457, guid: 35c66991b0c3b25448ad2f5c280217bd, type: 3}
       propertyPath: m_LocalPosition.x
