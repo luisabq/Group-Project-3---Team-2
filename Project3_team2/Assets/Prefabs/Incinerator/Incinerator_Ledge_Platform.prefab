@@ -64,6 +64,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a891650bae7f1b499fc949061e8b431, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8efa32c46c24cc64f8b43e23142110c7, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 128e81caa90093c41865432c91ea46a2, type: 2}
     - target: {fileID: 919132149155446097, guid: 49c6b635bc1ddb04989b7b5c7e83933d, type: 3}
       propertyPath: m_Name
       value: Incinerator_Ledge_Platform
