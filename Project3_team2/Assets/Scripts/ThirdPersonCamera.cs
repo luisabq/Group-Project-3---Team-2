@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class ThirdPersonCam : MonoBehaviour
 {
@@ -14,11 +15,12 @@ public class ThirdPersonCam : MonoBehaviour
 
     public Transform combatLookAt;
 
-    public GameObject thirdPersonCam;
-    public GameObject combatCam;
-    public GameObject topDownCam;
+    public CinemachineCamera thirdPersonCam;
+    public CinemachineCamera combatCam;
+    public CinemachineCamera topDownCam;
 
     public CameraStyle currentStyle;
+
     public enum CameraStyle
     {
         Basic,
@@ -52,7 +54,6 @@ public class ThirdPersonCam : MonoBehaviour
             SwitchCameraStyle(CameraStyle.Basic);
         }
 
-        // topdown test
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SwitchCameraStyle(CameraStyle.Topdown);
@@ -61,7 +62,6 @@ public class ThirdPersonCam : MonoBehaviour
 
     void HandleRotation()
     {
-        // stay facing camera direction
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 
@@ -70,20 +70,16 @@ public class ThirdPersonCam : MonoBehaviour
             Vector3 dirToLook = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
 
             orientation.forward = dirToLook.normalized;
-            playerObj.forward = dirToLook.normalized;
+            
         }
         else
         {
-            // rotate based on movement
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
 
             Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-            if (inputDir != Vector3.zero)
-            {
-                playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-            }
+            
         }
     }
 
@@ -91,13 +87,18 @@ public class ThirdPersonCam : MonoBehaviour
     {
         if (currentStyle == newStyle) return;
 
-        combatCam.SetActive(false);
-        thirdPersonCam.SetActive(false);
-        topDownCam.SetActive(false);
+        thirdPersonCam.Priority = 0;
+        combatCam.Priority = 0;
+        topDownCam.Priority = 0;
 
-        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
-        if (newStyle == CameraStyle.Combat) combatCam.SetActive(true);
-        if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
+        if (newStyle == CameraStyle.Basic)
+            thirdPersonCam.Priority = 10;
+
+        if (newStyle == CameraStyle.Combat)
+            combatCam.Priority = 10;
+
+        if (newStyle == CameraStyle.Topdown)
+            topDownCam.Priority = 10;
 
         currentStyle = newStyle;
     }

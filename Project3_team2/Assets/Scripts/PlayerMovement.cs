@@ -5,10 +5,15 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private bool aimLockRotation;
+    private bool isAiming;
+    private Vector3 aimLockedDirection;
     public int activeSteamReceptors;
     public bool onSteamTimer = false;
     public float steamTimerLength;
     private Coroutine steamCoroutine;
+
+    public Transform playerObj;
 
     private float moveSpeed;
     public float walkSpeed;
@@ -35,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 platformVelocity;
     private Vector3 platformDelta;
     private PlatformVelocity currentPlatform;
+    public Transform cameraTransform;
 
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
@@ -99,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
             currentPlatformRb = null;
             platformVelocity = Vector3.zero;
             Debug.Log("Grounded: false");
+
         }
 
         MyInput();
@@ -114,6 +121,39 @@ public class PlayerMovement : MonoBehaviour
         {
             activeSteamReceptors = 0;
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            isAiming = true;
+
+            Vector3 dir = cameraTransform.forward;
+            dir.y = 0f;
+            aimLockedDirection = dir.normalized;
+
+            playerObj.forward = aimLockedDirection;
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            isAiming = false;
+        }
+
+        if (isAiming)
+        {
+            playerObj.forward = aimLockedDirection;
+        }
+        else
+        {
+            if (moveDirection.sqrMagnitude > 0.01f)
+            {
+                playerObj.forward = Vector3.Slerp(
+                    playerObj.forward,
+                    moveDirection.normalized,
+                    Time.deltaTime * 8f
+                );
+            }
+        }
+
     }
 
     private void FixedUpdate()
@@ -168,7 +208,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (restricted) return;
 
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        moveDirection = forward * verticalInput + right * horizontalInput;
 
         if (OnSlope() && !exitingSlope)
         {
