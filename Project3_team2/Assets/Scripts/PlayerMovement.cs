@@ -5,15 +5,11 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("PlayerStats")]
     public int activeSteamReceptors;
     public bool onSteamTimer = false;
     public float steamTimerLength;
     private Coroutine steamCoroutine;
 
-
-
-    [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -23,22 +19,23 @@ public class PlayerMovement : MonoBehaviour
     public bool unlimited;
     public bool restricted;
 
-    [Header("Jumping")]
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
 
-    [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
 
-    [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
 
-    [Header("Slope Handling")]
+    private Rigidbody currentPlatformRb;
+    private Vector3 platformVelocity;
+    private Vector3 platformDelta;
+    private PlatformVelocity currentPlatform;
+
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
     private bool exitingSlope;
@@ -71,19 +68,38 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
-        onSteamTimer = false; 
+        onSteamTimer = false;
     }
 
     private void Update()
     {
-
-        if (onSteamTimer && steamCoroutine == null)
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, playerHeight * 0.5f + 0.2f, whatIsGround))
         {
-            slowTimer.Play();
-            steamCoroutine = StartCoroutine(SteamTimerRoutine());
-        }
+            grounded = true;
+            Debug.Log("Grounded: true");
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+            PlatformVelocity pv = hit.collider.GetComponentInParent<PlatformVelocity>();
+
+            if (pv != null)
+            {
+                currentPlatform = pv;
+                platformDelta = pv.Delta;
+                Debug.Log("Platform delta: " + platformDelta);
+            }
+            else
+            {
+                currentPlatform = null;
+                platformDelta = Vector3.zero;
+            }
+        }
+        else
+        {
+            grounded = false;
+            currentPlatformRb = null;
+            platformVelocity = Vector3.zero;
+            Debug.Log("Grounded: false");
+        }
 
         MyInput();
         SpeedControl();
@@ -162,11 +178,21 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
         else if (grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        else if (!grounded)
+        }
+        else
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
 
         rb.useGravity = !OnSlope();
+
+        if (grounded)
+        {
+            rb.MovePosition(rb.position + platformDelta);
+
+        }
     }
 
     private void SpeedControl()
@@ -217,28 +243,4 @@ public class PlayerMovement : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
-
-
-    IEnumerator SteamTimerRoutine()
-    {
-        float triggerTime = steamTimerLength * 0.6f; // when 60% has passed
-
-        // wait until 40% remains
-        yield return new WaitForSeconds(triggerTime);
-
-        slowTimer.Stop();
-        fastTimer.Play();
-
-        // wait the remaining 40%
-        yield return new WaitForSeconds(steamTimerLength - triggerTime);
-
-        Debug.Log("Time limit done, active steam now 0");
-        fastTimer.Stop();
-        activeSteamReceptors = 0;
-        onSteamTimer = false;
-
-        steamCoroutine = null;
-    }
-
-
 }
