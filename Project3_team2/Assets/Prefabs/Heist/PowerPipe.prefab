@@ -242,6 +242,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SteamReceptor
   requiredTime: 3
+  steamable: 1
+  timeLimit: 0
+  playerMovement: {fileID: 0}
+  light1: {fileID: 0}
+  light2: {fileID: 0}
 --- !u!82 &4017571653108380657
 AudioSource:
   m_ObjectHideFlags: 0
@@ -574,6 +579,7 @@ GameObject:
   - component: {fileID: 3595799104147903805}
   - component: {fileID: -5850033569481339001}
   - component: {fileID: -3734734863515363768}
+  - component: {fileID: -4713583669020958862}
   m_Layer: 0
   m_Name: PowerPipe
   m_TagString: Untagged
@@ -794,6 +800,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!64 &-4713583669020958862
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5324654212033489528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &1342964088468096058
 PrefabInstance:
   m_ObjectHideFlags: 0

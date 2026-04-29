@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4892787106971516961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeistPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +81,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4820457154526839492, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -3777438730644226528, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -96,6 +100,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
       propertyPath: m_Name
       value: HeistPlatform01_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f0720a8270abefe4faf4ffb0a32c7f9c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -189,10 +197,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeistPlatform01_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3324563282245301405, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 128e81caa90093c41865432c91ea46a2, type: 2}
+    - target: {fileID: 4196797877990731065, guid: 1f5d64ffa494afe4a870ec4f660796ff, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
