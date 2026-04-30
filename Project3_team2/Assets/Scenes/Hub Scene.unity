@@ -2512,6 +2512,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5099318346835727382, guid: b9f99f514a896c2488278f6e529a65c5, type: 3}
     - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
+      propertyPath: timeLimit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
       propertyPath: isHubReceptor
       value: 1
       objectReference: {fileID: 0}
@@ -3324,6 +3328,10 @@ PrefabInstance:
     - target: {fileID: 2723085905275304322, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773073918104264312, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: teleportTime
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2856773376411853893, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_Layer
@@ -5257,6 +5265,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -5099318346835727382, guid: b9f99f514a896c2488278f6e529a65c5, type: 3}
+    - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
+      propertyPath: timeLimit
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
       propertyPath: isHubReceptor
       value: 1
