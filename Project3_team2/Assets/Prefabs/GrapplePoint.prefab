@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f37d416e62dd84299bcaf47bf6b1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrapplePoint
-  visual: {fileID: 1815163777966851202}
+  visual: {fileID: 2627781702489214372}
   outline: {fileID: 3260714495310164902}
   snapPoint: {fileID: 8595697831477793170}
 --- !u!82 &1990818837001361411
@@ -481,6 +481,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a812157321bb2f34db6eb5521c9229eb, type: 3}
+--- !u!1 &2627781702489214372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a812157321bb2f34db6eb5521c9229eb, type: 3}
+  m_PrefabInstance: {fileID: 2933717306547187957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3403614272059889438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a812157321bb2f34db6eb5521c9229eb, type: 3}
