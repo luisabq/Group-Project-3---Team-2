@@ -10,7 +10,14 @@ public class SteeringWheel : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (playerMovement.activeSteamReceptors < 2)
+        bool enginesReady = playerMovement.activeSteamReceptors >= 2;
+
+        if (GameProgress.Instance != null && GameProgress.Instance.hubEnginesActivated)
+        {
+            enginesReady = true;
+        }
+
+        if (!enginesReady)
         {
             Debug.Log("Engines aren't powered yet!");
             return;

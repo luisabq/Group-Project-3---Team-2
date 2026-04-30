@@ -61,6 +61,10 @@ public class KeyInteract : MonoBehaviour, IInteractable
 
         GameProgress.Instance.AddKey();
 
+        GameProgress.Instance.CompleteLevel(SceneManager.GetActiveScene().name);
+
+        MapSystem.selectedLevel = "";
+
         SceneManager.LoadScene(hubSceneName);
     }
 }

@@ -1,36 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class SteamReceptor : MonoBehaviour
 {
-
-
-
     private float collisionTimer = 0f;
     private bool isColliding = false;
     public float requiredTime = 3f;
     public bool steamable = true;
     public bool isHubReceptor = false;
-    //MeshRenderer mr; 
 
-
-    public float timeLimit; 
+    public float timeLimit;
     public PlayerMovement playerMovement;
-
 
     private AudioSource[] audioSources;
 
     public Light light1;
     public Light light2;
 
-
-    // private Coroutine steamCoroutine;
-
-
-
-
-    // if colliding with capsule, start count, at 3 seconds queue destroy
+    private bool hasActivated = false;
 
     void OnTriggerEnter(Collider other)
     {
@@ -39,8 +26,8 @@ public class SteamReceptor : MonoBehaviour
             isColliding = true;
             collisionTimer = 0f;
 
-            if(steamable)
-            audioSources[0].Play();
+            if (steamable)
+                audioSources[0].Play();
         }
     }
 
@@ -50,34 +37,53 @@ public class SteamReceptor : MonoBehaviour
         {
             Debug.Log("colliding");
             collisionTimer += Time.deltaTime;
-            
-
-
-
-
-
 
             if (collisionTimer >= requiredTime)
             {
                 Debug.Log("collided for " + requiredTime + " secs and no longer steamable");
                 steamable = false;
-                
-                //steamCoroutine = StartCoroutine(SteamTimerRoutine());
-                playerMovement.activeSteamReceptors++;
-                Debug.Log("steam count added, now " +  playerMovement.activeSteamReceptors);
+
                 audioSources[1].Play();
                 light1.enabled = true;
                 light2.enabled = true;
-                if (playerMovement.onSteamTimer == false)
+
+                // regular levels receptors
+                if (!isHubReceptor)
                 {
-                    playerMovement.onSteamTimer = true;
-                    Debug.Log("Timer started for " + timeLimit + " seconds omg run fr");
-                    playerMovement.steamTimerLength = timeLimit;
+                    playerMovement.activeSteamReceptors++;
+
+                    if (playerMovement.onSteamTimer == false)
+                    {
+                        playerMovement.onSteamTimer = true;
+                        Debug.Log("Timer started for " + timeLimit + " seconds omg run fr");
+                        playerMovement.steamTimerLength = timeLimit;
+                    }
+                }
+                else
+                {
+                    // hub shit
+                    if (!hasActivated)
+                    {
+                        hasActivated = true;
+
+                        if (GameProgress.Instance != null)
+                        {
+                            GameProgress.Instance.hubEnginesCount++;
+
+                            Debug.Log("Hub engines count: " + GameProgress.Instance.hubEnginesCount);
+
+                            if (GameProgress.Instance.hubEnginesCount >= 2)
+                            {
+                                GameProgress.Instance.hubEnginesActivated = true;
+
+                                playerMovement.activeSteamReceptors = 2;
+
+                                Debug.Log("HUB ENGINES ALL ACTIVATED YAAAAAAAAAAAY");
+                            }
+                        }
+                    }
                 }
 
-
-                //open portal or whatever steam is powering
-                
                 isColliding = false;
             }
         }
@@ -90,51 +96,49 @@ public class SteamReceptor : MonoBehaviour
         collisionTimer = 0f;
     }
 
-
-
     void Start()
     {
         audioSources = GetComponents<AudioSource>();
 
-        if (isHubReceptor && GameProgress.Instance != null && GameProgress.Instance.keysCollected > 0)
+        // keep hub receptors on if activated once already
+        if (isHubReceptor && GameProgress.Instance != null && GameProgress.Instance.hubEnginesActivated)
         {
             steamable = false;
             light1.enabled = true;
             light2.enabled = true;
+
+            if (playerMovement != null)
+            {
+                playerMovement.activeSteamReceptors = 2;
+            }
+
+            hasActivated = true;
+        }
+        else
+        {
+            light1.enabled = false;
+            light2.enabled = false;
         }
     }
 
     void Update()
     {
-        if (playerMovement.onSteamTimer == false)
-            steamable = true;
+        // only reset nonhub receptors
+        if (!isHubReceptor)
+        {
+            if (playerMovement.onSteamTimer == false)
+                steamable = true;
+        }
+
         if (steamable)
         {
             light1.enabled = false;
             light2.enabled = false;
-
-            //mr.enabled = true;
         }
-        else 
+        else
         {
-           // mr.enabled = false;
             light1.enabled = true;
             light2.enabled = true;
         }
-
     }
-
-
-    //old code for individual resetting of steam receptors
-
-    //IEnumerator SteamTimerRoutine()
-   // {
-    //    yield return new WaitForSeconds(timeLimit);
-
-      //  steamable = true;
-       // Debug.Log("A receptor is now steamable");
-        
-   // }
-
-
 }
