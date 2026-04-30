@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hit, playerHeight * 0.5f + 0.2f, whatIsGround))
         {
             grounded = true;
-            Debug.Log("Grounded: true");
 
             PlatformVelocity pv = hit.collider.GetComponentInParent<PlatformVelocity>();
 

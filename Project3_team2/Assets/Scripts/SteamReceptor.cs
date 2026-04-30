@@ -11,6 +11,7 @@ public class SteamReceptor : MonoBehaviour
     private bool isColliding = false;
     public float requiredTime = 3f;
     public bool steamable = true;
+    public bool isHubReceptor = false;
     //MeshRenderer mr; 
 
 
@@ -93,12 +94,14 @@ public class SteamReceptor : MonoBehaviour
 
     void Start()
     {
-        
-        //mr = GetComponent<MeshRenderer>();
-        
         audioSources = GetComponents<AudioSource>();
-        light1.enabled = false;
-        light2.enabled = false;
+
+        if (isHubReceptor && GameProgress.Instance != null && GameProgress.Instance.keysCollected > 0)
+        {
+            steamable = false;
+            light1.enabled = true;
+            light2.enabled = true;
+        }
     }
 
     void Update()

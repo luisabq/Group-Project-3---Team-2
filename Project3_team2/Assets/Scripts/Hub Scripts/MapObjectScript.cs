@@ -11,12 +11,18 @@ public class MapTable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (playerMovement.activeSteamReceptors < 2)
+        {
+            Debug.Log("Power the engines first!");
+            return;
+        }
+
         mapUI.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // no more moving :D
+        //no more moving :D
         if (playerMovement != null) playerMovement.enabled = false;
         if (toolController != null) toolController.enabled = false;
         if (playerInteract != null) playerInteract.enabled = false;

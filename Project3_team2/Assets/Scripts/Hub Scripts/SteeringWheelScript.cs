@@ -4,10 +4,18 @@ using System.Collections;
 
 public class SteeringWheel : MonoBehaviour, IInteractable
 {
+    public PlayerMovement playerMovement;
+
     public float delay = 2f;
 
     public void Interact()
     {
+        if (playerMovement.activeSteamReceptors < 2)
+        {
+            Debug.Log("Engines aren't powered yet!");
+            return;
+        }
+
         if (!MapSystem.HasSelection())
         {
             Debug.Log("No level selected.");

@@ -59,6 +59,8 @@ public class KeyInteract : MonoBehaviour, IInteractable
 
         yield return new WaitForSecondsRealtime(1.5f);
 
+        GameProgress.Instance.AddKey();
+
         SceneManager.LoadScene(hubSceneName);
     }
 }
