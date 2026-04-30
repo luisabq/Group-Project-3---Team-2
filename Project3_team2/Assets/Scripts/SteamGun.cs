@@ -1,46 +1,49 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class SteamGun : MonoBehaviour
 {
-
-
     public Transform playerTransform;
+    public Transform cameraTransform;
 
     public GameObject steamCollider;
-
     public GameObject particles;
 
+    private bool isFiring = false;
 
-    void Start()
+    public AudioSource steamSound;
+
+    public Vector3 offset = new Vector3(0f, 0f, 0f);
+
+    private void Start()
     {
-        particles.transform.position = transform.position + (playerTransform.up * 0.5f);
-
-
+        steamCollider.SetActive(false);
+        particles.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        // get player rotation
-        float playerY = playerTransform.eulerAngles.y;
+        Vector3 worldOffset = cameraTransform.TransformDirection(offset);
 
-        // attach to player, in front 
-        transform.position = playerTransform.position + (playerTransform.forward * 1);
-        transform.eulerAngles = new Vector3(0, playerY, 0);
+        transform.position = cameraTransform.position + worldOffset;
 
-        
+        transform.rotation = cameraTransform.rotation;
+    }
 
-        // if pressing z, steam goes
-        if (Input.GetKey(KeyCode.Z))
-        {
-            steamCollider.SetActive(true);
-            particles.SetActive(true);
-        }
-        else
-        {
-            steamCollider.SetActive(false);
-            particles.SetActive(false);
-        }
+    public void Fire()
+    {
+        if (isFiring) return;
 
+        isFiring = true;
+        steamCollider.SetActive(true);
+        particles.SetActive(true);
+        steamSound.Play();
+    }
+
+    public void StopFire()
+    {
+        isFiring = false;
+        steamCollider.SetActive(false);
+        particles.SetActive(false);
+        steamSound.Stop();
     }
 }

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyle.uss?fileID=7433441132597879392&amp;guid=9ce5ae935e0af4fa8ac3d752f1136f48&amp;type=3#UIStyle" />
+    <ui:VisualElement name="container" class="container" style="flex-grow: 1;">
+        <ui:Label text="You Lose" name="title" class="header" style="top: 74px;" />
+        <ui:VisualElement name="buttons" style="flex-grow: 1; top: 142px;">
+            <ui:Button text="Try Again" name="restartButton" class="button" />
+            <ui:Button text="Quit" name="menuButton" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
