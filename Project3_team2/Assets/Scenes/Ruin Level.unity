@@ -4174,6 +4174,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3274478848747265297, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: grappleSystem
+      value: 
+      objectReference: {fileID: 1979123485}
     - target: {fileID: 3423152622955505034, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -35141,6 +35145,7 @@ MonoBehaviour:
     m_Bits: 0
   grappleSpeed: 20
   playerMovement: {fileID: 1883807495}
+  isGrappling: 0
   audioSource: {fileID: 0}
 --- !u!114 &1883807501
 MonoBehaviour:
@@ -36634,6 +36639,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6485176189748392075, guid: 5ba3fd8f16ffd304184c3e9503aab3d4, type: 3}
   m_PrefabInstance: {fileID: 1971073703}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1979123485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 834218018810096745, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+  m_PrefabInstance: {fileID: 272359096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10a5d8440c928d4eb32bfc90abac116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrappleSystem
 --- !u!1001 &1996437896
 PrefabInstance:
   m_ObjectHideFlags: 0
