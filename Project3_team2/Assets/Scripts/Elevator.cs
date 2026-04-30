@@ -20,7 +20,7 @@ public class Elevator : MonoBehaviour
     {
 
         startY = transform.localPosition.y;
-        targetY = transform.position.y - 6.96f;
+        targetY = transform.position.y - 7.9f;
     }
 
 
