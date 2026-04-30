@@ -73,6 +73,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
+        if (onSteamTimer && steamCoroutine == null)
+        {
+            slowTimer.Play();
+            steamCoroutine = StartCoroutine(SteamTimerRoutine());
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, playerHeight * 0.5f + 0.2f, whatIsGround))
         {
@@ -242,4 +249,24 @@ public class PlayerMovement : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
+
+    IEnumerator SteamTimerRoutine()
+    {
+        float triggerTime = steamTimerLength * 0.6f;
+
+        yield return new WaitForSeconds(triggerTime);
+
+        slowTimer.Stop();
+        fastTimer.Play();
+
+        yield return new WaitForSeconds(steamTimerLength - triggerTime);
+
+        Debug.Log("Time limit done, active steam now 0");
+        fastTimer.Stop();
+        activeSteamReceptors = 0;
+        onSteamTimer = false;
+
+        steamCoroutine = null;
+    }
+
 }
