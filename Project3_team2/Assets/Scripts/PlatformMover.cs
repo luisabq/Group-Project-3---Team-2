@@ -12,8 +12,8 @@ public class PlatformMover : MonoBehaviour
     public SteamReceptor steamReceptor;
 
     private bool notStart = false;
-   // private bool timeGoing = false;
-   // private bool hasTriggered = false;
+    // private bool timeGoing = false;
+    // private bool hasTriggered = false;
     //private bool noRepeat = false;
 
     void Start()
@@ -23,13 +23,13 @@ public class PlatformMover : MonoBehaviour
 
     }
 
-    
+
     //IEnumerator WaitForPlatformTimeLimit(float delay)
     //{
-     //   yield return new WaitForSeconds(delay);
-     //   steamReceptor.steamable = true;
+    //   yield return new WaitForSeconds(delay);
+    //   steamReceptor.steamable = true;
     //    noRepeat = false;
-  //  }
+    //  }
 
 
     void Update()
@@ -40,14 +40,12 @@ public class PlatformMover : MonoBehaviour
             Vector3 currentPos = transform.localPosition;
             Vector3 targetPos = new Vector3(currentPos.x, currentPos.y, targetZ);
             transform.localPosition = Vector3.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
-           // notStart = true;
+            // notStart = true;
             // hasTriggered = true;
         }
         else
         {
-            Vector3 currentPos = transform.localPosition;
-            Vector3 targetPos = new Vector3(currentPos.x, currentPos.y, startZ);
-            transform.localPosition = Vector3.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
+
         }
 
         // platform going back in
@@ -61,18 +59,18 @@ public class PlatformMover : MonoBehaviour
         // starts coroutine timer
         //if (timeGoing == true)
         //{
-       //     StartCoroutine(WaitForPlatformTimeLimit(platformTimeLimit));
-       //     timeGoing = false;
-      //  }
+        //     StartCoroutine(WaitForPlatformTimeLimit(platformTimeLimit));
+        //     timeGoing = false;
+        //  }
 
         // this is so the timer doesn't start multiple times 
-       // if (hasTriggered == true && noRepeat == false)
-       // {
+        // if (hasTriggered == true && noRepeat == false)
+        // {
         //    noRepeat = true;
-       //      timeGoing = true;
-      //  }
+        //      timeGoing = true;
+        //  }
 
 
     }
 
-    }
+}
