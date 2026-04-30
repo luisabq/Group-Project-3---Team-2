@@ -11798,7 +11798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517820274894192083, guid: 9b443fc08596b594c83ad86e567be987, type: 3}
       propertyPath: m_LocalScale.x
-      value: 40
+      value: 1960
       objectReference: {fileID: 0}
     - target: {fileID: 3517820274894192083, guid: 9b443fc08596b594c83ad86e567be987, type: 3}
       propertyPath: m_LocalScale.y
@@ -11806,7 +11806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517820274894192083, guid: 9b443fc08596b594c83ad86e567be987, type: 3}
       propertyPath: m_LocalScale.z
-      value: 40
+      value: 2480
       objectReference: {fileID: 0}
     - target: {fileID: 3517820274894192083, guid: 9b443fc08596b594c83ad86e567be987, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15526,6 +15526,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 128e81caa90093c41865432c91ea46a2, type: 2}
+    - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
+      propertyPath: timeLimit
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 834432396402062095, guid: fb96232edd4b648468ccaaf54feacc29, type: 3}
       propertyPath: playerMovement
       value: 
