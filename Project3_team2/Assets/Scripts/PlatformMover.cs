@@ -45,9 +45,7 @@ public class PlatformMover : MonoBehaviour
         }
         else
         {
-            Vector3 currentPos = transform.localPosition;
-            Vector3 targetPos = new Vector3(currentPos.x, currentPos.y, startZ);
-            transform.localPosition = Vector3.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
+           
         }
 
         // platform going back in
