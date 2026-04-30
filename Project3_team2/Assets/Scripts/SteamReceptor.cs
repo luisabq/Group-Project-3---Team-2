@@ -8,6 +8,7 @@ public class SteamReceptor : MonoBehaviour
     public float requiredTime = 3f;
     public bool steamable = true;
     public bool isHubReceptor = false;
+    public bool canResetTimer = false;
 
     public float timeLimit;
     public PlayerMovement playerMovement;
@@ -52,9 +53,10 @@ public class SteamReceptor : MonoBehaviour
                 {
                     playerMovement.activeSteamReceptors++;
 
-                    if (playerMovement.onSteamTimer == false)
+                    if (playerMovement.onSteamTimer == false || canResetTimer)
                     {
-                        playerMovement.onSteamTimer = true;
+                        // playerMovement.onSteamTimer = true;
+                        playerMovement.TriggerSteam(timeLimit, canResetTimer);
                         Debug.Log("Timer started for " + timeLimit + " seconds omg run fr");
                         playerMovement.steamTimerLength = timeLimit;
                     }

@@ -74,11 +74,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        if (onSteamTimer && steamCoroutine == null)
-        {
-            slowTimer.Play();
-            steamCoroutine = StartCoroutine(SteamTimerRoutine());
-        }
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, playerHeight * 0.5f + 0.2f, whatIsGround))
@@ -120,6 +115,28 @@ public class PlayerMovement : MonoBehaviour
         {
             activeSteamReceptors = 0;
         }
+    }
+
+    public void TriggerSteam(float newDuration, bool canReset)
+    {
+        
+        if (onSteamTimer)
+        {
+            if (!canReset) return;
+
+            
+            if (steamCoroutine != null)
+                StopCoroutine(steamCoroutine);
+        }
+
+        steamTimerLength = newDuration;
+        onSteamTimer = true;
+
+        slowTimer.Stop();
+        fastTimer.Stop();
+
+        slowTimer.Play();
+        steamCoroutine = StartCoroutine(SteamTimerRoutine());
     }
 
     private void FixedUpdate()
@@ -181,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
             if (rb.linearVelocity.y > 0)
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                rb.AddForce(Vector3.down * 10f, ForceMode.Force);
         }
         else if (grounded)
         {
