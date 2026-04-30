@@ -2701,15 +2701,15 @@ PrefabInstance:
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 7442775300598504788, guid: 6dcad599a59ac454c8c780898cd6a6a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8074389
+      value: 0.000008136051
       objectReference: {fileID: 0}
     - target: {fileID: 7442775300598504788, guid: 6dcad599a59ac454c8c780898cd6a6a1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.1537628
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7442775300598504788, guid: 6dcad599a59ac454c8c780898cd6a6a1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.1943936
+      value: 7.0000153
       objectReference: {fileID: 0}
     - target: {fileID: 7442775300598504788, guid: 6dcad599a59ac454c8c780898cd6a6a1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2780,6 +2780,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3569511133606510736}
   m_SourcePrefab: {fileID: 100100000, guid: 6dcad599a59ac454c8c780898cd6a6a1, type: 3}
+--- !u!114 &834218018810096745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4192926251279255112, guid: 6dcad599a59ac454c8c780898cd6a6a1, type: 3}
+  m_PrefabInstance: {fileID: 3576976220024138273}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481841868784257304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10a5d8440c928d4eb32bfc90abac116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrappleSystem
 --- !u!4 &1851554759086143031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2887356936386092054, guid: 6dcad599a59ac454c8c780898cd6a6a1, type: 3}
@@ -2863,6 +2874,7 @@ MonoBehaviour:
   animator: {fileID: 8412017405807761973}
   rb: {fileID: 2668389619523082677}
   footstepSound: {fileID: 3605189749551296883}
+  grappleSystem: {fileID: 834218018810096745}
 --- !u!114 &714676379685814343
 MonoBehaviour:
   m_ObjectHideFlags: 0

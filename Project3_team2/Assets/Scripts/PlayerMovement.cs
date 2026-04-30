@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             grounded = false;
             currentPlatformRb = null;
             platformVelocity = Vector3.zero;
-            Debug.Log("Grounded: false");
+            
         }
 
         MyInput();

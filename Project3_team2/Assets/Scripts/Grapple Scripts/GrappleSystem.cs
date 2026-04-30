@@ -12,7 +12,7 @@ public class GrappleSystem : MonoBehaviour
     private GrapplePoint currentTarget;
     private GrapplePoint previousTarget;
 
-    private bool isGrappling = false;
+    public bool isGrappling = false;
     private Vector3 grapplePosition;
 
     public AudioSource audioSource;
