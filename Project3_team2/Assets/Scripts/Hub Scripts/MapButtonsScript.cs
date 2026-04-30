@@ -13,7 +13,7 @@ public class MapButton : MonoBehaviour
     {
         MapSystem.SetLevel(levelName);
 
-        MapButton[] allButtons = FindObjectsOfType<MapButton>();
+        MapButton[] allButtons = Object.FindObjectsByType<MapButton>(FindObjectsSortMode.None);
 
         foreach (MapButton btn in allButtons)
         {
