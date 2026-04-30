@@ -3,7 +3,7 @@
     <ui:VisualElement name="container" style="flex-grow: 1; width: 1700px; align-self: center; height: 1000px; align-content: center; background-color: rgba(7, 8, 34, 0.6); position: absolute; justify-content: flex-start; top: 37px; right: auto; left: auto;">
         <ui:Label text="Paused" name="title" class="header" style="top: auto;" />
         <ui:Button text="Back" name="backButton" class="button buttonPause" />
-        <ui:Button text="Settings" name="settingsButton" class="button buttonPause" />
+        <ui:Button text="Controls" name="settingsButton" class="button buttonPause" />
         <ui:Button text="Quit" name="menuButton" class="button buttonPause" />
     </ui:VisualElement>
 </ui:UXML>

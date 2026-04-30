@@ -6,14 +6,20 @@ public class pauseScript : MonoBehaviour
 {
     private UIDocument _document;
     private VisualElement _root;
+    private UIDocument _controlsDocumentInstance;
+    private VisualElement _controlsRoot;
 
     private Button _backButton;
     private Button _settingsButton;
     private Button _menuButton;
+    private Button _backButtonControls;
 
     [Header("Gameplay References")]
     public PlayerMovement playerMovement;
     public ThirdPersonCam thirdPersonCam;
+
+    [Header("UI References")]
+    public UIDocument controlsDocument;
 
     private bool _isPaused = false;
 
@@ -41,6 +47,7 @@ public class pauseScript : MonoBehaviour
         else
             Debug.LogWarning("menuButton not found!");
 
+        SetupControlsDocument();
         _root.style.display = DisplayStyle.None;
     }
 
@@ -76,6 +83,7 @@ public class pauseScript : MonoBehaviour
         _isPaused = false;
         Time.timeScale = 1f;
         _root.style.display = DisplayStyle.None;
+        HideControlsOverlay();
 
         if (playerMovement != null)
             playerMovement.enabled = true;
@@ -96,6 +104,8 @@ public class pauseScript : MonoBehaviour
     private void OnSettingsClicked()
     {
         Debug.Log("Settings clicked");
+        _root.style.display = DisplayStyle.None;
+        ShowControlsOverlay();
     }
 
     private void OnMenuClicked()
@@ -104,6 +114,7 @@ public class pauseScript : MonoBehaviour
 
         Time.timeScale = 1f;
         _isPaused = false;
+        HideControlsOverlay();
 
         UnityEngine.Cursor.visible = true;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
@@ -121,5 +132,86 @@ public class pauseScript : MonoBehaviour
 
         if (_menuButton != null)
             _menuButton.clicked -= OnMenuClicked;
+
+        if (_backButtonControls != null)
+            _backButtonControls.clicked -= OnControlsBackClicked;
+    }
+
+    private void SetupControlsDocument()
+    {
+        _controlsDocumentInstance = controlsDocument != null ? controlsDocument : FindControlsDocument();
+
+        if (_controlsDocumentInstance == null)
+        {
+            Debug.LogWarning("Controls UIDocument not found!");
+            return;
+        }
+
+        _controlsDocumentInstance.gameObject.SetActive(false);
+    }
+
+    private UIDocument FindControlsDocument()
+    {
+        UIDocument[] documents = Resources.FindObjectsOfTypeAll<UIDocument>();
+
+        foreach (UIDocument document in documents)
+        {
+            if (document == null || document == _document)
+                continue;
+
+            if (!document.gameObject.scene.IsValid())
+                continue;
+
+            if (document.gameObject.name == "Controls")
+                return document;
+        }
+
+        return null;
+    }
+
+    private void ShowControlsOverlay()
+    {
+        if (_controlsDocumentInstance == null)
+            return;
+
+        _controlsDocumentInstance.gameObject.SetActive(true);
+        _controlsRoot = _controlsDocumentInstance.rootVisualElement;
+
+        if (_controlsRoot == null)
+        {
+            Debug.LogWarning("Controls root visual element not found!");
+            return;
+        }
+
+        _controlsRoot.style.display = DisplayStyle.Flex;
+        BindControlsBackButton();
+    }
+
+    private void OnControlsBackClicked()
+    {
+        _root.style.display = DisplayStyle.Flex;
+        HideControlsOverlay();
+    }
+
+    private void HideControlsOverlay()
+    {
+        if (_controlsRoot != null)
+            _controlsRoot.style.display = DisplayStyle.None;
+
+        if (_controlsDocumentInstance != null)
+            _controlsDocumentInstance.gameObject.SetActive(false);
+    }
+
+    private void BindControlsBackButton()
+    {
+        if (_backButtonControls != null)
+            _backButtonControls.clicked -= OnControlsBackClicked;
+
+        _backButtonControls = _controlsRoot.Q<Button>("backButtonControls");
+
+        if (_backButtonControls != null)
+            _backButtonControls.clicked += OnControlsBackClicked;
+        else
+            Debug.LogWarning("backButtonControls not found!");
     }
 }
