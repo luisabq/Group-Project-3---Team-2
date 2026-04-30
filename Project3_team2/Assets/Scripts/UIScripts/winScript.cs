@@ -24,6 +24,14 @@ public class winScript : MonoBehaviour
             _menuButton.RegisterCallback<ClickEvent>(OnMenuButtonClick);
         else
             Debug.LogWarning("menuButton not found!");
+
+        FocusButton(_restartButton);
+    }
+
+    private void Update()
+    {
+        if (MenuButtonPressed())
+            LoadMainMenu();
     }
 
     private void OnDisable()
@@ -44,6 +52,22 @@ public class winScript : MonoBehaviour
     private void OnMenuButtonClick(ClickEvent evt)
     {
         Debug.Log("Main Menu clicked");
+        LoadMainMenu();
+    }
+
+    private void LoadMainMenu()
+    {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void FocusButton(Button button)
+    {
+        if (button != null)
+            button.schedule.Execute(() => button.Focus());
+    }
+
+    private bool MenuButtonPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1);
     }
 }

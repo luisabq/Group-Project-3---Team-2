@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class mainMenuActions : MonoBehaviour
 {
     private UIDocument _document;
+    private VisualElement _root;
 
     private Button _playButton;
     private Button _howToPlayButton;
@@ -19,11 +20,12 @@ public class mainMenuActions : MonoBehaviour
         UnityEngine.Cursor.visible = true;
 
         _document = GetComponent<UIDocument>();
+        _root = _document.rootVisualElement;
 
-        _playButton = _document.rootVisualElement.Q<Button>("playButton");
-        _howToPlayButton = _document.rootVisualElement.Q<Button>("howtoplayButton");
-        _quitButton = _document.rootVisualElement.Q<Button>("quitButton");
-        _creditButton = _document.rootVisualElement.Q<Button>("creditButton");
+        _playButton = _root.Q<Button>("playButton");
+        _howToPlayButton = _root.Q<Button>("howtoplayButton");
+        _quitButton = _root.Q<Button>("quitButton");
+        _creditButton = _root.Q<Button>("creditButton");
 
         if (_playButton != null)
             _playButton.RegisterCallback<ClickEvent>(OnPlayButtonClick);
@@ -44,6 +46,8 @@ public class mainMenuActions : MonoBehaviour
             _creditButton.RegisterCallback<ClickEvent>(OnCreditButtonClick);
         else
             Debug.LogWarning("creditButton not found!");
+
+        FocusButton(_playButton);
     }
 
     private void OnDisable()
@@ -63,7 +67,7 @@ public class mainMenuActions : MonoBehaviour
 
     private void OnPlayButtonClick(ClickEvent evt)
     {
-        SceneManager.LoadScene("Ruin Level");
+        SceneManager.LoadScene("Hub Scene");
     }
 
     private void OnHowToPlayButtonClick(ClickEvent evt)
@@ -79,5 +83,11 @@ public class mainMenuActions : MonoBehaviour
     private void OnCreditButtonClick(ClickEvent evt)
     {
         SceneManager.LoadScene("Credits");
+    }
+
+    private void FocusButton(Button button)
+    {
+        if (button != null)
+            button.schedule.Execute(() => button.Focus());
     }
 }

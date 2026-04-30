@@ -17,6 +17,14 @@ public class creditScript : MonoBehaviour
             _backButton.RegisterCallback<ClickEvent>(OnBackButtonClick);
         else
             Debug.LogWarning("backButton not found!");
+
+        FocusButton(_backButton);
+    }
+
+    private void Update()
+    {
+        if (BackButtonPressed())
+            GoToMainMenu();
     }
 
     private void OnDisable()
@@ -28,6 +36,22 @@ public class creditScript : MonoBehaviour
     private void OnBackButtonClick(ClickEvent evt)
     {
         Debug.Log("Back clicked");
+        GoToMainMenu();
+    }
+
+    private void GoToMainMenu()
+    {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void FocusButton(Button button)
+    {
+        if (button != null)
+            button.schedule.Execute(() => button.Focus());
+    }
+
+    private bool BackButtonPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1);
     }
 }
