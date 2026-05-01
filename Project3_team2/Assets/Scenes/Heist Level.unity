@@ -1398,6 +1398,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5198871728297386235, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: jumpForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198871728297386235, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: sprintSpeed
       value: 15
       objectReference: {fileID: 0}
@@ -21250,6 +21254,10 @@ PrefabInstance:
     - target: {fileID: 7596048293124414432, guid: 54c5d479a1348b244beae1293812a977, type: 3}
       propertyPath: m_Name
       value: HeistChair
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596048293124414432, guid: 54c5d479a1348b244beae1293812a977, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
