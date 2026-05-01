@@ -59,8 +59,13 @@ public class KeyInteract : MonoBehaviour, IInteractable
 
         yield return new WaitForSecondsRealtime(1.5f);
 
-        GameProgress.Instance.AddKey();
+        if (GameProgress.Instance == null)
+        {
+            Debug.LogWarning("GameProgress missing, creating one.");
+            new GameObject("GameProgress").AddComponent<GameProgress>();
+        }
 
+        GameProgress.Instance.AddKey();
         GameProgress.Instance.CompleteLevel(SceneManager.GetActiveScene().name);
 
         MapSystem.selectedLevel = "";
