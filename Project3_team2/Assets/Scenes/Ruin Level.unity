@@ -4779,6 +4779,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 228684952030413470, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1806904092}
+    - target: {fileID: 228684952030413470, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: thirdPersonCam
+      value: 
+      objectReference: {fileID: 272359097}
+    - target: {fileID: 228684952030413470, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: controlsDocument
+      value: 
+      objectReference: {fileID: 1981874059}
     - target: {fileID: 299958485682040531, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -5574,8 +5586,27 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5141784164185642191, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       insertIndex: -1
       addedObject: {fileID: 164148485}
+    - targetCorrespondingSourceObject: {fileID: 3287780749541046577, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1981874057}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+--- !u!114 &272359097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8808605471734750484, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+  m_PrefabInstance: {fileID: 272359096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a2880f89a21cf488c3a4427ecf1348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThirdPersonCamera
+--- !u!224 &272359098 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3287780749541046577, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+  m_PrefabInstance: {fileID: 272359096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &274031982
 GameObject:
   m_ObjectHideFlags: 0
@@ -41253,6 +41284,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10a5d8440c928d4eb32bfc90abac116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrappleSystem
+--- !u!1 &1981874056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981874057}
+  - component: {fileID: 1981874059}
+  - component: {fileID: 1981874058}
+  m_Layer: 5
+  m_Name: Controls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981874057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981874056}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 272359098}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981874058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981874056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcbd95bdda934af190b602047576972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::pauseScript
+  playerMovement: {fileID: 1806904092}
+  thirdPersonCam: {fileID: 272359097}
+  controlsDocument: {fileID: 1981874059}
+--- !u!114 &1981874059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981874056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: f807d6b8d36d34ecb8fb441b9bfe8a6e, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 2d0b1bff2072d4ee0a6a571a65fbdc2a, type: 3}
+  m_SortingOrder: 50
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1001 &1986287730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44414,6 +44516,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4577552431127541371, guid: 3af513387b5417f4b8887b5f1448aae9, type: 3}
+      propertyPath: steamIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 68e63468d4384504eaae3c4884a157f6, type: 3}
+    - target: {fileID: 4577552431127541371, guid: 3af513387b5417f4b8887b5f1448aae9, type: 3}
+      propertyPath: grappleIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 814a5f549c9b20f4fb1fd2011a8cdd78, type: 3}
     - target: {fileID: 4577552431127541371, guid: 3af513387b5417f4b8887b5f1448aae9, type: 3}
       propertyPath: toolController
       value: 
