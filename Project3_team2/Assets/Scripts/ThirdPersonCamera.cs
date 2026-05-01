@@ -42,9 +42,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     void HandleCameraSwitch()
     {
-        float trigger = Input.GetAxis("Triggers");
-
-        bool aiming = Input.GetMouseButton(1) || trigger < -0.1f;
+        bool aiming = Input.GetMouseButton(1);
 
         if (aiming && currentStyle != CameraStyle.Combat)
         {
@@ -55,7 +53,6 @@ public class ThirdPersonCam : MonoBehaviour
             SwitchCameraStyle(CameraStyle.Basic);
         }
 
-        // topdown test
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SwitchCameraStyle(CameraStyle.Topdown);
@@ -64,7 +61,6 @@ public class ThirdPersonCam : MonoBehaviour
 
     void HandleRotation()
     {
-        // stay facing camera direction
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 
@@ -77,7 +73,6 @@ public class ThirdPersonCam : MonoBehaviour
         }
         else
         {
-            // rotate based on movement
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
 
