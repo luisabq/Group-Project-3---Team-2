@@ -52,13 +52,13 @@ public class RecallAbility : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton3))
         {
             allowedtoTP = true;
             SetRecallPoint();
             
         }
-        if (Input.GetKeyDown(KeyCode.T) && spawnedPortal.activeSelf)
+        if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.JoystickButton2)) && spawnedPortal.activeSelf)
         {
             
             StartCoroutine(MoveDelay(1.0f));

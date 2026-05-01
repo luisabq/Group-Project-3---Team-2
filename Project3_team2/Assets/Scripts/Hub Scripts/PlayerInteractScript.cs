@@ -17,7 +17,7 @@ public class PlayerInteract : MonoBehaviour
 
         CheckForInteractable();
 
-        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)) && currentInteractable != null)
         {
             currentInteractable.Interact();
         }

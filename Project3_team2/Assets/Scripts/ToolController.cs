@@ -30,12 +30,12 @@ public class PlayerToolController : MonoBehaviour
     void HandleSwitch()
     {
         //number keys
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.JoystickButton4))
         {
             SetTool(Tool.Grapple);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.JoystickButton5))
         {
             SetTool(Tool.Steam);
         }
@@ -85,12 +85,20 @@ public class PlayerToolController : MonoBehaviour
 
     void HandleAim()
     {
-        isAiming = Input.GetMouseButton(1);
+        float trigger = Input.GetAxis("Triggers");
+
+        // LT
+        isAiming = Input.GetMouseButton(1) || trigger < -0.1f;
     }
 
     void HandleFire()
     {
-        if (isAiming && Input.GetMouseButtonDown(0))
+        float trigger = Input.GetAxis("Triggers");
+
+        // RT
+        bool firing = trigger > 0.1f;
+
+        if (isAiming && (Input.GetMouseButtonDown(0) || firing))
         {
             if (currentTool == Tool.Grapple)
             {
@@ -103,9 +111,12 @@ public class PlayerToolController : MonoBehaviour
             }
         }
 
-        if (currentTool == Tool.Steam && Input.GetMouseButtonUp(0))
+        if (currentTool == Tool.Steam && (Input.GetMouseButtonUp(0) || !firing))
         {
             steamGun.StopFire();
         }
+
+        Debug.Log("Trigger value: " + Input.GetAxis("Triggers"));
+
     }
 }

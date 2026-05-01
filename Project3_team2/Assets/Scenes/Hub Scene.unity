@@ -4564,7 +4564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5198871728297386235, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: sprintSpeed
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5198871728297386235, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: maxSlopeAngle
@@ -5681,6 +5681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f739d0514fb9146989803599e1954c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreasureChest
+  winSceneName: WinScreen
   lockedText: {fileID: 959248088}
 --- !u!4 &1322645656 stripped
 Transform:

@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class TreasureChest : MonoBehaviour, IInteractable
 {
+    public string winSceneName = "WinScreen";
+
     [Header("UI")]
     public GameObject lockedText;
 
@@ -21,11 +25,20 @@ public class TreasureChest : MonoBehaviour, IInteractable
         }
     }
 
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene(winSceneName);
+    }
+
     void OpenChest()
     {
         isOpened = true;
 
-        Time.timeScale = 0f;
+        Debug.Log("YOU WIN!");
+
+        StartCoroutine(LoadWinScreen());
     }
 
     void LockedFeedback()

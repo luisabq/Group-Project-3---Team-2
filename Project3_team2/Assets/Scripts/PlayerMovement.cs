@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public bool freeze;
     public bool unlimited;
     public bool restricted;
+    private bool sprintToggled = false;
 
     public float jumpForce;
     public float jumpCooldown;
@@ -149,7 +150,17 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKeyDown(sprintKey) || Input.GetKeyDown(KeyCode.JoystickButton8))
+        {
+            sprintToggled = true;
+        }
+
+        if (horizontalInput == 0 && verticalInput == 0)
+        {
+            sprintToggled = false;
+        }
+
+        if ((Input.GetKey(jumpKey) || Input.GetKey(KeyCode.JoystickButton0)) && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -171,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (grounded && Input.GetKey(sprintKey))
+        if (grounded && sprintToggled || Input.GetKey(KeyCode.JoystickButton8))
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
