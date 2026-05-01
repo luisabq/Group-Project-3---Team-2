@@ -12,6 +12,7 @@ public class PlatformMover : MonoBehaviour
     public SteamReceptor steamReceptor;
 
     private bool notStart = false;
+    public AudioSource platformSound;
     // private bool timeGoing = false;
     // private bool hasTriggered = false;
     //private bool noRepeat = false;
@@ -37,6 +38,7 @@ public class PlatformMover : MonoBehaviour
         // platforms going out, starts timer 
         if (steamReceptor.steamable == false)
         {
+            platformSound.Play();
             Vector3 currentPos = transform.localPosition;
             Vector3 targetPos = new Vector3(currentPos.x, currentPos.y, targetZ);
             transform.localPosition = Vector3.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);

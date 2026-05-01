@@ -15,10 +15,12 @@ public class Elevator : MonoBehaviour
     private bool timeGoing = false;
     private bool hasTriggered = false;
     private bool noRepeat = false;
+    public AudioSource elevatorSound;
+    Rigidbody rb;
 
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
         startY = transform.localPosition.y;
         targetY = transform.position.y - 7.9f;
     }
@@ -34,39 +36,58 @@ public class Elevator : MonoBehaviour
 
     void Update()
     {
-        // platforms going out, starts timer 
+
+        bool moving = false;
+
         if (steamReceptor.steamable == false)
         {
             Vector3 currentPos = transform.localPosition;
             Vector3 targetPos = new Vector3(currentPos.x, targetY, currentPos.z);
-            transform.localPosition = Vector3.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
+
+            if (currentPos != targetPos)
+            {
+                transform.localPosition = Vector3.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
+                moving = true;
+            }
+
             notStart = true;
             hasTriggered = true;
         }
 
-        // platform going back in
         if (steamReceptor.steamable == true && notStart == true)
         {
-            Vector3 targetPos = transform.localPosition;
-            Vector3 currentPos = new Vector3(targetPos.x, startY, targetPos.z);
-            transform.localPosition = Vector3.MoveTowards(targetPos, currentPos, speed * Time.deltaTime);
+            Vector3 currentPos = transform.localPosition;
+            Vector3 targetPos = new Vector3(currentPos.x, startY, currentPos.z);
+
+            if (currentPos != targetPos)
+            {
+                transform.localPosition = Vector3.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
+                moving = true;
+            }
         }
 
-        // starts coroutine timer
+        if (moving)
+        {
+            if (!elevatorSound.isPlaying)
+                elevatorSound.Play();
+        }
+        else
+        {
+            if (elevatorSound.isPlaying)
+                elevatorSound.Stop();
+        }
+
         if (timeGoing == true)
         {
             StartCoroutine(WaitForPlatformTimeLimit(platformTimeLimit));
             timeGoing = false;
         }
 
-        // this is so the timer doesn't start multiple times 
         if (hasTriggered == true && noRepeat == false)
         {
             noRepeat = true;
             timeGoing = true;
         }
-
-
     }
 
 }
