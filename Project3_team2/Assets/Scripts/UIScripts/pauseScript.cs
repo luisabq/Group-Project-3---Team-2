@@ -14,9 +14,11 @@ public class pauseScript : MonoBehaviour
     private Button _menuButton;
     private Button _backButtonControls;
 
+
     [Header("Gameplay References")]
     public PlayerMovement playerMovement;
     public ThirdPersonCam thirdPersonCam;
+    public PlayerToolController toolController;
 
     [Header("UI References")]
     public UIDocument controlsDocument;
@@ -55,6 +57,16 @@ public class pauseScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (MapTable.IsMapOpen)
+            {
+                MapTable mapTable = Object.FindFirstObjectByType<MapTable>();
+                if (mapTable != null)
+                {
+                    mapTable.CloseMap();
+                }
+                return;
+            }
+
             if (_isPaused)
                 ResumeGame();
             else
@@ -74,6 +86,9 @@ public class pauseScript : MonoBehaviour
         if (thirdPersonCam != null)
             thirdPersonCam.enabled = false;
 
+        if (toolController != null)
+            toolController.enabled = false;
+
         UnityEngine.Cursor.visible = true;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
@@ -85,11 +100,17 @@ public class pauseScript : MonoBehaviour
         _root.style.display = DisplayStyle.None;
         HideControlsOverlay();
 
-        if (playerMovement != null)
-            playerMovement.enabled = true;
+        if (!MapTable.IsMapOpen)
+        {
+            if (playerMovement != null)
+                playerMovement.enabled = true;
 
-        if (thirdPersonCam != null)
-            thirdPersonCam.enabled = true;
+            if (thirdPersonCam != null)
+                thirdPersonCam.enabled = true;
+
+            if (toolController != null)
+                toolController.enabled = true;
+        }
 
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;

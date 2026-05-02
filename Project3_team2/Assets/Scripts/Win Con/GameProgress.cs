@@ -12,6 +12,11 @@ public class GameProgress : MonoBehaviour
 
     public HashSet<string> completedLevels = new HashSet<string>();
 
+    public static class UIState
+    {
+        public static bool IsUIOpen = false;
+    }
+
     void Awake()
     {
         if (Instance == null)

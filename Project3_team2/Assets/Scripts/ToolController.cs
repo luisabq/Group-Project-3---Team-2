@@ -22,6 +22,10 @@ public class PlayerToolController : MonoBehaviour
 
     void Update()
     {
+
+        if (Time.timeScale == 0f)
+            return;
+
         HandleSwitch();
         HandleAim();
         HandleFire();

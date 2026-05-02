@@ -8,6 +8,12 @@ public class PlayerInteract : MonoBehaviour
     [Header("UI")]
     public GameObject interactText;
 
+    public void HidePrompt()
+    {
+        if (interactText != null)
+            interactText.SetActive(false);
+    }
+
     private IInteractable currentInteractable;
 
     void Update()
