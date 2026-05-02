@@ -5,8 +5,7 @@ using System.Collections;
 public class KeyInteract : MonoBehaviour, IInteractable
 {
     [Header("Effects")]
-    public AudioClip pickupSound;
-    public GameObject pickupEffect;
+    public AudioSource pickupAudioSource;
 
     [Header("UI")]
     public GameObject collectedText;
@@ -32,14 +31,9 @@ public class KeyInteract : MonoBehaviour, IInteractable
     IEnumerator CollectKey()
     {
 
-        if (pickupSound != null)
+        if (pickupAudioSource != null)
         {
-            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
-        }
-
-        if (pickupEffect != null)
-        {
-            Instantiate(pickupEffect, transform.position, Quaternion.identity);
+            pickupAudioSource.Play();
         }
 
         if (collectedText != null)
@@ -57,7 +51,14 @@ public class KeyInteract : MonoBehaviour, IInteractable
             c.enabled = false;
         }
 
-        yield return new WaitForSecondsRealtime(1.5f);
+        float waitTime = 1.5f;
+
+        if (pickupAudioSource != null && pickupAudioSource.clip != null)
+        {
+            waitTime = pickupAudioSource.clip.length;
+        }
+
+        yield return new WaitForSecondsRealtime(waitTime);
 
         if (GameProgress.Instance == null)
         {
