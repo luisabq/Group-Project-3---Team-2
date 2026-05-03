@@ -67,7 +67,7 @@ public class mainMenuActions : MonoBehaviour
 
     private void OnPlayButtonClick(ClickEvent evt)
     {
-        SceneManager.LoadScene("Hub Scene");
+        SceneManager.LoadScene("CutsceneIntro");
     }
 
     private void OnHowToPlayButtonClick(ClickEvent evt)

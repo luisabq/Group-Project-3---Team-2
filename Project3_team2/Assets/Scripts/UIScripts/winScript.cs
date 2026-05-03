@@ -8,6 +8,12 @@ public class winScript : MonoBehaviour
     private Button _restartButton;
     private Button _menuButton;
 
+    void Start()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+    }
+
     private void Awake()
     {
         _document = GetComponent<UIDocument>();

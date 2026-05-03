@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TreasureChest : MonoBehaviour, IInteractable
 {
-    public string winSceneName = "WinScreen";
+    public string endingSceneName = "CutsceneEnding";
 
     [Header("UI")]
     public GameObject lockedText;
@@ -25,11 +25,11 @@ public class TreasureChest : MonoBehaviour, IInteractable
         }
     }
 
-    IEnumerator LoadWinScreen()
+    IEnumerator LoadEndingScene()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene(winSceneName);
+        SceneManager.LoadScene(endingSceneName);
     }
 
     void OpenChest()
@@ -38,7 +38,7 @@ public class TreasureChest : MonoBehaviour, IInteractable
 
         Debug.Log("YOU WIN!");
 
-        StartCoroutine(LoadWinScreen());
+        StartCoroutine(LoadEndingScene());
     }
 
     void LockedFeedback()
@@ -48,7 +48,6 @@ public class TreasureChest : MonoBehaviour, IInteractable
         if (lockedText != null)
         {
             lockedText.SetActive(true);
-
             Invoke(nameof(HideLockedText), 2f);
         }
     }
