@@ -10,10 +10,12 @@ public class pauseScript : MonoBehaviour
     private VisualElement _controlsRoot;
 
     private Button _backButton;
-    private Button _settingsButton;
+    private Button _restartButton;
     private Button _menuButton;
     private Button _backButtonControls;
 
+    [Header("Reset Reference")]
+    private Reset resetScript;
 
     [Header("Gameplay References")]
     public PlayerMovement playerMovement;
@@ -27,11 +29,13 @@ public class pauseScript : MonoBehaviour
 
     private void Awake()
     {
+        resetScript = FindFirstObjectByType<Reset>();
+
         _document = GetComponent<UIDocument>();
         _root = _document.rootVisualElement;
 
         _backButton = _root.Q<Button>("backButton");
-        _settingsButton = _root.Q<Button>("settingsButton");
+        _restartButton = _root.Q<Button>("restartButton");
         _menuButton = _root.Q<Button>("menuButton");
 
         if (_backButton != null)
@@ -39,10 +43,10 @@ public class pauseScript : MonoBehaviour
         else
             Debug.LogWarning("backButton not found!");
 
-        if (_settingsButton != null)
-            _settingsButton.clicked += OnSettingsClicked;
+        if (_restartButton != null)
+            _restartButton.clicked += OnRestartClicked;
         else
-            Debug.LogWarning("settingsButton not found!");
+            Debug.LogWarning("restartButton not found!");
 
         if (_menuButton != null)
             _menuButton.clicked += OnMenuClicked;
@@ -122,11 +126,22 @@ public class pauseScript : MonoBehaviour
         ResumeGame();
     }
 
-    private void OnSettingsClicked()
+    private void OnRestartClicked()
     {
-        Debug.Log("Settings clicked");
-        _root.style.display = DisplayStyle.None;
-        ShowControlsOverlay();
+        Debug.Log("Restart clicked");
+
+        Debug.Log("Reset reference: " + resetScript);
+
+        if (resetScript != null)
+        {
+            resetScript.Drop();
+        }
+        else
+        {
+            Debug.LogError("RESET IS NULL AT RUNTIME");
+        }
+
+        ResumeGame();
     }
 
     private void OnMenuClicked()
@@ -148,8 +163,8 @@ public class pauseScript : MonoBehaviour
         if (_backButton != null)
             _backButton.clicked -= OnBackClicked;
 
-        if (_settingsButton != null)
-            _settingsButton.clicked -= OnSettingsClicked;
+        if (_restartButton != null)
+            _restartButton.clicked -= OnRestartClicked;
 
         if (_menuButton != null)
             _menuButton.clicked -= OnMenuClicked;
