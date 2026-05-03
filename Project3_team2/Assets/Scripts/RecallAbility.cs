@@ -58,12 +58,9 @@ public class RecallAbility : MonoBehaviour
             SetRecallPoint();
             
         }
-        if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.JoystickButton2)) && spawnedPortal.activeSelf)
+        if ((Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.JoystickButton2)) && spawnedPortal != null && spawnedPortal.activeSelf)
         {
-            
             StartCoroutine(MoveDelay(1.0f));
-
-            
         }
     }
 
