@@ -18,7 +18,7 @@ public class DoorOpening : MonoBehaviour
     {
 
         ClosedDoor.SetActive(true);
-        OpenDoor.SetActive(false);
+        //OpenDoor.SetActive(false);
 
 
     }
@@ -35,7 +35,7 @@ public class DoorOpening : MonoBehaviour
         {
 
             ClosedDoor.SetActive(false);
-            OpenDoor.SetActive(true);
+            //OpenDoor.SetActive(true);
             hasTriggered = true;
         }
 

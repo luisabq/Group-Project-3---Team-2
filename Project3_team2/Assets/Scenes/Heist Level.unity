@@ -1229,6 +1229,10 @@ PrefabInstance:
       propertyPath: grappleIcon
       value: 
       objectReference: {fileID: 2800000, guid: 814a5f549c9b20f4fb1fd2011a8cdd78, type: 3}
+    - target: {fileID: 3698415009884105461, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3824335933463010561, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1240,6 +1244,10 @@ PrefabInstance:
     - target: {fileID: 4038597316130543212, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040615826506886077, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: m_Volume
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4151151736477845610, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: interactText
@@ -19477,7 +19485,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 11.8
+  MinDistance: 17.18
   MaxDistance: 22.978165
   Pan2D: 0
   rolloffMode: 0
@@ -19528,7 +19536,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.2
+      value: 0.22777778
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -19826,6 +19834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::pauseScript
   playerMovement: {fileID: 1605401063}
   thirdPersonCam: {fileID: 63935856}
+  toolController: {fileID: 0}
   controlsDocument: {fileID: 1969706385}
 --- !u!114 &1969706385
 MonoBehaviour:
