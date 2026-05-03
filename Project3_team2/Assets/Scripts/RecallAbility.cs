@@ -44,10 +44,14 @@ public class RecallAbility : MonoBehaviour
     public AudioSource placeRecall;
     public AudioSource recallTeleport;
 
+    public Animator animation;
+
+
     private void Start()
     {
         allCams = FindObjectsOfType<CinemachineCamera>();
         recallRadial.gameObject.SetActive(false);
+        animation.Play("RecallDefault");
     }
 
     private void Update()
@@ -134,6 +138,7 @@ public class RecallAbility : MonoBehaviour
         playerObj.forward = recordDirection;
         GetComponent<PlayerMovement>().enabled = false;
         rb.linearVelocity = recordDirection * currentSpeed;
+        animation.Play("RecallAnimation");
        
 
         // camera switching like CameraTriggerZone
@@ -209,5 +214,6 @@ public class RecallAbility : MonoBehaviour
         yield return new WaitForSeconds(moveDelay);
         GetComponent<PlayerMovement>().enabled = true;
         Debug.Log("Script on");
+        animation.Play("RecallDefault");
     }
 }
