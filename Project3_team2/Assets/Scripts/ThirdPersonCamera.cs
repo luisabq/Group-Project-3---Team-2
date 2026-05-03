@@ -42,7 +42,12 @@ public class ThirdPersonCam : MonoBehaviour
 
     void HandleCameraSwitch()
     {
-        bool aiming = Input.GetMouseButton(1);
+        
+        float lt = Input.GetAxis("LT");
+        
+
+        
+        bool aiming = Input.GetMouseButton(1) || lt > 0.1f;
 
         if (aiming && currentStyle != CameraStyle.Combat)
         {

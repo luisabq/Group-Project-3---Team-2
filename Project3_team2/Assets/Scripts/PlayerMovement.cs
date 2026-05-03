@@ -53,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource slowTimer;
     public AudioSource fastTimer;
 
+
+   
+
     public MovementState state;
 
     public enum MovementState
@@ -116,6 +119,20 @@ public class PlayerMovement : MonoBehaviour
         {
             activeSteamReceptors = 0;
         }
+
+
+        float rt = Input.GetAxis("RT");
+        float lt = Input.GetAxis("LT");
+        if (rt > 0.1f)
+        {
+            
+        }
+
+        if (lt > 0.1f)
+        {
+            
+        }
+
     }
 
     public void TriggerSteam(float newDuration, bool canReset)

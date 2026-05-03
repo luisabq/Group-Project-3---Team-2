@@ -12,15 +12,20 @@ public class PlayerAnim : MonoBehaviour
     {
         float speed = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude;
         float yVel = rb.linearVelocity.y;
-
-
         
+        float lt = Input.GetAxis("LT");
+        
+
+
+
         animator.SetFloat("Speed", speed);
         animator.SetFloat("YVelocity", yVel);
 
         animator.SetBool("Grounded", footstepSound.isGrounded);
 
-        animator.SetBool("Aiming", Input.GetMouseButton(1));
+
+
+        animator.SetBool("Aiming", Input.GetMouseButton(1) || lt > 0.1f);
 
         if (Input.GetKeyDown(KeyCode.Space) && footstepSound.isGrounded)
         {

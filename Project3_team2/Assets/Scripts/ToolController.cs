@@ -89,12 +89,16 @@ public class PlayerToolController : MonoBehaviour
 
     void HandleAim()
     {
-        isAiming = Input.GetMouseButton(1);
+        float lt = Input.GetAxis("LT");
+        
+        isAiming = Input.GetMouseButton(1) || lt > 0.1f;
     }
 
     void HandleFire()
     {
-        if (isAiming && Input.GetMouseButtonDown(0))
+        float rt = Input.GetAxis("RT");
+
+        if (isAiming && (Input.GetMouseButtonDown(0) || rt > 0.1f))
         {
             if (currentTool == Tool.Grapple)
             {
@@ -107,7 +111,7 @@ public class PlayerToolController : MonoBehaviour
             }
         }
 
-        if (currentTool == Tool.Steam && Input.GetMouseButtonUp(0))
+        if (currentTool == Tool.Steam && Input.GetMouseButtonUp(0) || rt < 0.1f)
         {
             steamGun.StopFire();
         }
