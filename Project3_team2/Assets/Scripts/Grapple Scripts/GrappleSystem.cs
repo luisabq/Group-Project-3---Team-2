@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 
@@ -18,10 +17,6 @@ public class GrappleSystem : MonoBehaviour
 
     public AudioSource audioSource;
 
-    public LineRenderer rope;
-    public Transform ropeStart;
-    private Vector3 ropeVisualPoint;
-
 
     public void TryGrapple()
     {
@@ -33,22 +28,11 @@ public class GrappleSystem : MonoBehaviour
     }
     void Update()
     {
-        if (isGrappling)
-        {
-            MoveToGrapplePoint();
-            UpdateRope();
-        }
-        else
-        {
-            if (rope != null)
-                rope.enabled = false;
-        }
-
         DetectGrapplePoint();
 
         if (isGrappling)
         {
-
+            
             MoveToGrapplePoint();
         }
     }
@@ -83,26 +67,15 @@ public class GrappleSystem : MonoBehaviour
                 previousTarget = null;
             }
         }
-
-        if (Physics.Raycast(ray, out hit, maxDistance, grappleLayer))
-        {
-            ropeVisualPoint = hit.point + hit.normal * 0.05f;
-
-            GrapplePoint newTarget = hit.collider.GetComponent<GrapplePoint>();
-
-        }
     }
 
     void StartGrapple()
     {
-
         isGrappling = true;
 
         // pls work
         if (playerMovement != null)
-        {
             playerMovement.enabled = false;
-        }
 
         if (currentTarget.snapPoint != null)
             grapplePosition = currentTarget.snapPoint.position;
@@ -110,13 +83,6 @@ public class GrappleSystem : MonoBehaviour
             grapplePosition = currentTarget.transform.position;
 
         grapplePosition += Vector3.up * 0.5f;
-
-
-
-
-
-        if (rope != null)
-            rope.enabled = true;
     }
     void FinishGrapple()
     {
@@ -131,13 +97,8 @@ public class GrappleSystem : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
-        if (rope != null)
-            rope.enabled = false;
-
         if (playerMovement != null)
             playerMovement.enabled = true;
-
-
     }
     void MoveToGrapplePoint()
     {
@@ -150,18 +111,4 @@ public class GrappleSystem : MonoBehaviour
             FinishGrapple();
         }
     }
-
-
-    void UpdateRope()
-    {
-        if (rope == null) return;
-
-        rope.enabled = true;
-
-        rope.SetPosition(0, ropeStart.position);
-        rope.SetPosition(1, ropeVisualPoint);
-    }
-
-
-
 }
