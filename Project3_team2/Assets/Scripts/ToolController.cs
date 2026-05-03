@@ -19,6 +19,7 @@ public class PlayerToolController : MonoBehaviour
     public AudioSource armSwitch;
     public AudioSource steamSwitch;
     public AudioSource grappleSwitch;
+    public bool toolChange;
 
     void Update()
     {
@@ -68,22 +69,25 @@ public class PlayerToolController : MonoBehaviour
     }
 
     void SetTool(Tool newTool)
+
     {
+
+        Debug.Log("SetTool CALLED: " + newTool);
         if (currentTool == newTool) return;
 
         currentTool = newTool;
+
+        StartCoroutine(ToolChangePulse());
 
         armSwitch.Play();
 
         switch (currentTool)
         {
             case Tool.Grapple:
-              //  Debug.Log("Grapple Equipped");
                 grappleSwitch.Play();
                 break;
 
             case Tool.Steam:
-              //  Debug.Log("Steam Equipped");
                 steamSwitch.Play();
                 break;
         }
@@ -110,14 +114,24 @@ public class PlayerToolController : MonoBehaviour
             if (currentTool == Tool.Steam)
             {
                 steamGun.Fire();
-               // Debug.Log("firing da steam, boss");
             }
         }
 
         if (currentTool == Tool.Steam && (!Input.GetMouseButton(0) && rt < 0.1f))
         {
             steamGun.StopFire();
-            //Debug.Log("no more steaming now");
         }
     }
+
+    IEnumerator ToolChangePulse()
+    {
+        toolChange = true;
+        Debug.Log("toolChange = TRUE");
+
+        yield return new WaitForSeconds(0.2f);
+
+        toolChange = false;
+        Debug.Log("toolChange = FALSE");
+    }
+
 }
