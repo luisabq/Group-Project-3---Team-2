@@ -13775,8 +13775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d007924b4561bb347babda908dfa8bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyInteract
-  pickupSound: {fileID: 0}
-  pickupEffect: {fileID: 0}
+  pickupAudioSource: {fileID: 0}
   collectedText: {fileID: 0}
   hubSceneName: Hub Scene
 --- !u!65 &721047034
@@ -25730,6 +25729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22630ce7058e67469da46733ecad088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisappearOnTouch
+  pickupText: {fileID: 0}
+  textDuration: 2
+  pickupSound: {fileID: 0}
 --- !u!65 &1195408709
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26870,6 +26872,18 @@ PrefabInstance:
     - target: {fileID: 834218018810096745, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: maxDistance
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3698415009884105461, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930110904041449192, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: m_Volume
+      value: 0.514
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040615826506886077, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
+      propertyPath: m_Volume
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4210330055278243880, guid: 12ba632c0c533b541b9a0a8879fe2e88, type: 3}
       propertyPath: m_LocalPosition.x

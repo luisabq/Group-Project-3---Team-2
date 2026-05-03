@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class MapTable : MonoBehaviour, IInteractable
 {
@@ -10,8 +11,16 @@ public class MapTable : MonoBehaviour, IInteractable
     public PlayerInteract playerInteract;
     public static bool IsMapOpen = false;
 
+    [Header("Level Description UI")]
+    public GameObject descriptionPanel;
+    public TMP_Text planetNameText;
+    public TMP_Text descriptionText;
+
     public void Interact()
     {
+        if (descriptionPanel != null)
+            descriptionPanel.SetActive(false);
+
         bool enginesReady = playerMovement.activeSteamReceptors >= 2;
 
         if (GameProgress.Instance != null && GameProgress.Instance.hubEnginesActivated)
@@ -44,6 +53,9 @@ public class MapTable : MonoBehaviour, IInteractable
     }
     public void CloseMap()
     {
+        if (descriptionPanel != null)
+            descriptionPanel.SetActive(false);
+
         mapUI.SetActive(false);
         IsMapOpen = false;
 
@@ -56,4 +68,24 @@ public class MapTable : MonoBehaviour, IInteractable
 
         Time.timeScale = 1f;
     }
+
+    public void ShowLevelInfo(int index)
+    {
+        if (index < 0 || index >= levels.Length) return;
+
+        descriptionPanel.SetActive(true);
+
+        planetNameText.text = levels[index].levelName;
+        descriptionText.text = levels[index].description;
+    }
+
+    [System.Serializable]
+    public class LevelInfo
+    {
+        public string levelName;
+        [TextArea(2, 4)]
+        public string description;
+    }
+
+    public LevelInfo[] levels;
 }

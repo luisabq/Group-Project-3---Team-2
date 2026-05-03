@@ -9,7 +9,9 @@ public class ReticleController : MonoBehaviour
     {
         if (reticle == null || toolController == null) return;
 
-        bool isAiming = Input.GetMouseButton(1);
+        float lt = Input.GetAxis("LT");
+
+        bool isAiming = Input.GetMouseButton(1) || lt > 0.1f;
 
         bool isGrapple = toolController.currentTool == PlayerToolController.Tool.Grapple;
 

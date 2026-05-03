@@ -10,7 +10,11 @@ public class MapButton : MonoBehaviour
     public Color selectedColor = Color.green;
     public Color completedColor = Color.red;
 
-    private bool isCompleted = false; 
+    private bool isCompleted = false;
+
+    public int levelIndex;
+
+    public MapTable mapTable;
 
     void Start()
     {
@@ -33,6 +37,11 @@ public class MapButton : MonoBehaviour
         }
 
         MapSystem.SetLevel(levelName);
+
+        if (mapTable != null)
+        {
+            mapTable.ShowLevelInfo(levelIndex);
+        }
 
         MapButton[] allButtons = Object.FindObjectsByType<MapButton>(FindObjectsSortMode.None);
 
