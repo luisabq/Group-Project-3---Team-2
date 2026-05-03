@@ -3,7 +3,7 @@
     <ui:VisualElement name="container" class="container" style="flex-grow: 1; background-color: rgb(21, 28, 36); justify-content: center; align-content: center;">
         <ui:VisualElement name="Title" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/title.png?fileID=2800000&amp;guid=799780a34c0bb46f480d1bb3f154c98f&amp;type=3#title&quot;); height: 804px; position: absolute; width: 1061px; top: 166px; left: 19px; align-self: center; align-content: center; justify-content: center;" />
         <ui:VisualElement name="buttons" style="flex-grow: 1; top: 268px; position: absolute; left: 1194px;">
-            <ui:Button text="Play" name="playButton" class="button" />
+            <ui:Button text="Play" name="playButton" selectable="false" focusable="true" class="button" />
             <ui:Button text="How to Play" name="howtoplayButton" emoji-fallback-support="true" class="button" />
             <ui:Button text="Quit" name="quitButton" class="button" />
         </ui:VisualElement>

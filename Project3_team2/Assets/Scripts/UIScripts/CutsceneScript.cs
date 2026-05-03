@@ -1,8 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+﻿using System.Collections;
 using TMPro;
-using System.Collections;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SlideshowController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class SlideshowController : MonoBehaviour
     public Image artImage;
     public GameObject text1;
     public GameObject text2;
-    public GameObject nextButton;
+    public Button nextButton;
 
     [Header("Slides")]
     public Sprite[] images;
@@ -36,6 +37,8 @@ public class SlideshowController : MonoBehaviour
     private CanvasGroup text1Group;
     private CanvasGroup text2Group;
 
+    private bool canProceed = false;
+
     void Start()
     {
         text1Comp = text1.GetComponent<TMP_Text>();
@@ -44,18 +47,21 @@ public class SlideshowController : MonoBehaviour
         text1Group = text1.GetComponent<CanvasGroup>();
         text2Group = text2.GetComponent<CanvasGroup>();
 
+        nextButton.onClick.AddListener(NextSlide);
+
         StartSlide();
     }
 
     void StartSlide()
     {
+        canProceed = false;
 
         text1Group.alpha = 1f;
         text2Group.alpha = 0f;
 
         text1.SetActive(true);
         text2.SetActive(false);
-        nextButton.SetActive(false);
+        nextButton.gameObject.SetActive(false);
 
         artImage.sprite = images[currentSlide];
         text1Comp.text = firstTexts[currentSlide];
@@ -78,11 +84,20 @@ public class SlideshowController : MonoBehaviour
 
         yield return StartCoroutine(FadeCanvasGroup(text2Group, 0f, 1f));
 
-        nextButton.SetActive(true);
+        nextButton.gameObject.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(nextButton.gameObject);
+
+        nextButton.gameObject.SetActive(true);
+        canProceed = true;
     }
 
     public void NextSlide()
     {
+        if (!canProceed) return;
+
+        canProceed = false;
+
         currentSlide++;
 
         if (currentSlide >= images.Length)

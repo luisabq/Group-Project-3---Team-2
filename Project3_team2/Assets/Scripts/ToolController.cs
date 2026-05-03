@@ -111,7 +111,7 @@ public class PlayerToolController : MonoBehaviour
             }
         }
 
-        if (currentTool == Tool.Steam && Input.GetMouseButtonUp(0) || rt < 0.1f)
+        if (currentTool == Tool.Steam && (Input.GetMouseButtonUp(0) || rt < 0.1f))
         {
             steamGun.StopFire();
         }
