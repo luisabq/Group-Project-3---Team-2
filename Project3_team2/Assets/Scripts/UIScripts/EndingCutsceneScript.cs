@@ -3,13 +3,14 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class EndingCutsceneController : MonoBehaviour
 {
     public Image artImage;
     public GameObject text1;
     public GameObject text2;
-    public GameObject nextButton;
+    public Button nextButton;
 
     public Sprite endingImage;
 
@@ -30,6 +31,8 @@ public class EndingCutsceneController : MonoBehaviour
     private CanvasGroup text1Group;
     private CanvasGroup text2Group;
 
+    private bool canProceed = false;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -41,17 +44,21 @@ public class EndingCutsceneController : MonoBehaviour
         text1Group = text1.GetComponent<CanvasGroup>();
         text2Group = text2.GetComponent<CanvasGroup>();
 
+        nextButton.onClick.AddListener(Next);
+
         StartCutscene();
     }
 
     void StartCutscene()
     {
+        canProceed = false;
+
         text1Group.alpha = 1f;
         text2Group.alpha = 0f;
 
         text1.SetActive(true);
         text2.SetActive(false);
-        nextButton.SetActive(false);
+        nextButton.gameObject.SetActive(false);
 
         artImage.sprite = endingImage;
         text1Comp.text = firstText;
@@ -71,11 +78,17 @@ public class EndingCutsceneController : MonoBehaviour
 
         yield return StartCoroutine(FadeCanvasGroup(text2Group, 0f, 1f));
 
-        nextButton.SetActive(true);
+        nextButton.gameObject.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(nextButton.gameObject);
+
+        canProceed = true;
     }
 
     public void Next()
     {
+        if (!canProceed) return;
+
         SceneManager.LoadScene(nextScene);
     }
 

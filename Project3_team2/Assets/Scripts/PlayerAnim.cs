@@ -6,15 +6,15 @@ public class PlayerAnim : MonoBehaviour
     public Rigidbody rb;
     public FootstepSound footstepSound;
     public GrappleSystem grappleSystem;
-    
+    public PlayerToolController toolController;
 
     void Update()
     {
         float speed = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude;
         float yVel = rb.linearVelocity.y;
-        
+
         float lt = Input.GetAxis("LT");
-        
+
 
 
 
@@ -32,16 +32,18 @@ public class PlayerAnim : MonoBehaviour
             animator.SetTrigger("Jump");
         }
 
-       
-           animator.SetBool("Grapple", grappleSystem.isGrappling);
-       
-       
 
-        void Start()
-        {
-            grappleSystem = GetComponent<GrappleSystem>();
-           
-        }
+        animator.SetBool("Grapple", grappleSystem.isGrappling);
+        animator.SetBool("ToolChange", toolController.toolChange);
+        Debug.Log(toolController.toolChange);
+
 
     }
+
+    void Start()
+    {
+        grappleSystem = GetComponent<GrappleSystem>();
+
+    }
+
 }

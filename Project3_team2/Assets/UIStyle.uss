@@ -39,3 +39,13 @@
 .container {
     background-color: rgb(21, 28, 36);
 }
+
+button:focus {
+    border-color: yellow;
+    border-width: 4px;
+}
+
+.selected {
+    background-color: rgba(255, 215, 0, 0.15);
+    scale: 1.05;
+}

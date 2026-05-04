@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class MapTable : MonoBehaviour, IInteractable
 {
@@ -50,6 +51,13 @@ public class MapTable : MonoBehaviour, IInteractable
         }
 
         Time.timeScale = 0f;
+
+        MapButton firstButton = FindFirstObjectByType<MapButton>();
+
+        if (firstButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
+        }
     }
     public void CloseMap()
     {

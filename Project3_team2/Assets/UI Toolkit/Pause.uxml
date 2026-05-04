@@ -3,7 +3,7 @@
     <ui:VisualElement name="container" style="flex-grow: 1; width: 1700px; align-self: center; height: 1000px; align-content: center; background-color: rgba(55, 55, 55, 0); position: absolute; justify-content: flex-start; top: 37px; right: auto; left: auto; background-image: url(&quot;project://database/Assets/UI%20Toolkit/PauseBackground.png?fileID=2800000&amp;guid=95b1dc2b68df9da4f95313be3e198ccd&amp;type=3#PauseBackground&quot;);">
         <ui:Label text="Paused" name="title" class="header" style="top: 15px; font-size: 132px; height: 232px;" />
         <ui:Button text="Back" name="backButton" class="button buttonPause" />
-        <ui:Button text="Controls" name="settingsButton" class="button buttonPause" />
+        <ui:Button text="RESTART" name="restartButton" class="button buttonPause" />
         <ui:Button text="Quit" name="menuButton" class="button buttonPause" />
     </ui:VisualElement>
 </ui:UXML>

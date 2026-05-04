@@ -19,6 +19,7 @@ public class PlayerToolController : MonoBehaviour
     public AudioSource armSwitch;
     public AudioSource steamSwitch;
     public AudioSource grappleSwitch;
+    public bool toolChange;
 
     void Update()
     {
@@ -37,11 +38,13 @@ public class PlayerToolController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.JoystickButton4))
         {
             SetTool(Tool.Grapple);
+           // Debug.Log("Keyboard on grapple");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.JoystickButton5))
         {
             SetTool(Tool.Steam);
+           // Debug.Log("Keyboard switched to steam");
         }
 
         //mouse wheel
@@ -66,22 +69,25 @@ public class PlayerToolController : MonoBehaviour
     }
 
     void SetTool(Tool newTool)
+
     {
+
+        Debug.Log("SetTool CALLED: " + newTool);
         if (currentTool == newTool) return;
 
         currentTool = newTool;
+
+        StartCoroutine(ToolChangePulse());
 
         armSwitch.Play();
 
         switch (currentTool)
         {
             case Tool.Grapple:
-                Debug.Log("Grapple Equipped");
                 grappleSwitch.Play();
                 break;
 
             case Tool.Steam:
-                Debug.Log("Steam Equipped");
                 steamSwitch.Play();
                 break;
         }
@@ -91,14 +97,14 @@ public class PlayerToolController : MonoBehaviour
     {
         float lt = Input.GetAxis("LT");
         
-        isAiming = Input.GetMouseButton(1) || lt > 0.1f;
+        isAiming = (Input.GetMouseButton(1) || lt > 0.1f);
     }
 
     void HandleFire()
     {
         float rt = Input.GetAxis("RT");
 
-        if (isAiming && (Input.GetMouseButtonDown(0) || rt > 0.1f))
+        if (isAiming && (Input.GetMouseButton(0) || rt > 0.1f))
         {
             if (currentTool == Tool.Grapple)
             {
@@ -111,9 +117,21 @@ public class PlayerToolController : MonoBehaviour
             }
         }
 
-        if (currentTool == Tool.Steam && Input.GetMouseButtonUp(0) || rt < 0.1f)
+        if (currentTool == Tool.Steam && (!Input.GetMouseButton(0) && rt < 0.1f))
         {
             steamGun.StopFire();
         }
     }
+
+    IEnumerator ToolChangePulse()
+    {
+        toolChange = true;
+        Debug.Log("toolChange = TRUE");
+
+        yield return new WaitForSeconds(0.2f);
+
+        toolChange = false;
+        Debug.Log("toolChange = FALSE");
+    }
+
 }

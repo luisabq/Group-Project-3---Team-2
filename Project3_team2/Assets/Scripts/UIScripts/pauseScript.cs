@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -10,10 +11,12 @@ public class pauseScript : MonoBehaviour
     private VisualElement _controlsRoot;
 
     private Button _backButton;
-    private Button _settingsButton;
+    private Button _restartButton;
     private Button _menuButton;
     private Button _backButtonControls;
 
+    [Header("Reset Reference")]
+    private Reset resetScript;
 
     [Header("Gameplay References")]
     public PlayerMovement playerMovement;
@@ -25,29 +28,40 @@ public class pauseScript : MonoBehaviour
 
     private bool _isPaused = false;
 
+    private List<Button> _buttons;
+    private int _currentIndex = 0;
+
+    private float inputCooldown = 0.2f;
+    private float lastInputTime = 0f;
+
+    bool usingController = true;
+
     private void Awake()
     {
+        resetScript = FindFirstObjectByType<Reset>();
+
         _document = GetComponent<UIDocument>();
         _root = _document.rootVisualElement;
 
         _backButton = _root.Q<Button>("backButton");
-        _settingsButton = _root.Q<Button>("settingsButton");
+        _restartButton = _root.Q<Button>("restartButton");
         _menuButton = _root.Q<Button>("menuButton");
 
         if (_backButton != null)
             _backButton.clicked += OnBackClicked;
-        else
-            Debug.LogWarning("backButton not found!");
 
-        if (_settingsButton != null)
-            _settingsButton.clicked += OnSettingsClicked;
-        else
-            Debug.LogWarning("settingsButton not found!");
+        if (_restartButton != null)
+            _restartButton.clicked += OnRestartClicked;
 
         if (_menuButton != null)
             _menuButton.clicked += OnMenuClicked;
-        else
-            Debug.LogWarning("menuButton not found!");
+
+        _buttons = new List<Button>()
+        {
+            _backButton,
+            _restartButton,
+            _menuButton
+        };
 
         SetupControlsDocument();
         _root.style.display = DisplayStyle.None;
@@ -72,6 +86,59 @@ public class pauseScript : MonoBehaviour
             else
                 PauseGame();
         }
+
+        if (_isPaused)
+        {
+
+            if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            {
+                usingController = false;
+                ClearSelectionHighlight();
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                usingController = false;
+                ClearSelectionHighlight();
+            }
+
+            if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                usingController = false;
+                ClearSelectionHighlight();
+            }
+
+            if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f ||
+                Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                if (!usingController)
+                {
+                    usingController = true;
+                    ApplySelectionHighlight();
+                }
+            }
+
+            float vertical = Input.GetAxis("Vertical");
+
+            if (Time.unscaledTime - lastInputTime > inputCooldown)
+            {
+                if (vertical > 0.5f)
+                {
+                    MoveSelection(-1);
+                    lastInputTime = Time.unscaledTime;
+                }
+                else if (vertical < -0.5f)
+                {
+                    MoveSelection(1);
+                    lastInputTime = Time.unscaledTime;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                ActivateCurrentButton();
+            }
+        }
     }
 
     private void PauseGame()
@@ -91,6 +158,14 @@ public class pauseScript : MonoBehaviour
 
         UnityEngine.Cursor.visible = true;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
+
+        _currentIndex = 0;
+
+        foreach (var btn in _buttons)
+            btn.RemoveFromClassList("selected");
+
+        _buttons[_currentIndex].AddToClassList("selected");
+        _buttons[_currentIndex].Focus();
     }
 
     private void ResumeGame()
@@ -118,21 +193,21 @@ public class pauseScript : MonoBehaviour
 
     private void OnBackClicked()
     {
-        Debug.Log("Back clicked");
         ResumeGame();
     }
 
-    private void OnSettingsClicked()
+    private void OnRestartClicked()
     {
-        Debug.Log("Settings clicked");
-        _root.style.display = DisplayStyle.None;
-        ShowControlsOverlay();
+        if (resetScript != null)
+        {
+            resetScript.Drop();
+        }
+
+        ResumeGame();
     }
 
     private void OnMenuClicked()
     {
-        Debug.Log("Menu clicked");
-
         Time.timeScale = 1f;
         _isPaused = false;
         HideControlsOverlay();
@@ -143,19 +218,46 @@ public class pauseScript : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void OnDisable()
+    private void MoveSelection(int direction)
     {
-        if (_backButton != null)
-            _backButton.clicked -= OnBackClicked;
+        if (usingController)
+            _buttons[_currentIndex].RemoveFromClassList("selected");
 
-        if (_settingsButton != null)
-            _settingsButton.clicked -= OnSettingsClicked;
+        _currentIndex += direction;
 
-        if (_menuButton != null)
-            _menuButton.clicked -= OnMenuClicked;
+        if (_currentIndex < 0)
+            _currentIndex = _buttons.Count - 1;
 
-        if (_backButtonControls != null)
-            _backButtonControls.clicked -= OnControlsBackClicked;
+        if (_currentIndex >= _buttons.Count)
+            _currentIndex = 0;
+
+        if (usingController)
+            _buttons[_currentIndex].AddToClassList("selected");
+
+        _buttons[_currentIndex].Focus();
+    }
+
+    private void ActivateCurrentButton()
+    {
+        switch (_currentIndex)
+        {
+            case 0: OnBackClicked(); break;
+            case 1: OnRestartClicked(); break;
+            case 2: OnMenuClicked(); break;
+        }
+    }
+
+    void ClearSelectionHighlight()
+    {
+        foreach (var btn in _buttons)
+        {
+            btn.RemoveFromClassList("selected");
+        }
+    }
+
+    void ApplySelectionHighlight()
+    {
+        _buttons[_currentIndex].AddToClassList("selected");
     }
 
     private void SetupControlsDocument()
@@ -163,10 +265,7 @@ public class pauseScript : MonoBehaviour
         _controlsDocumentInstance = controlsDocument != null ? controlsDocument : FindControlsDocument();
 
         if (_controlsDocumentInstance == null)
-        {
-            Debug.LogWarning("Controls UIDocument not found!");
             return;
-        }
 
         _controlsDocumentInstance.gameObject.SetActive(false);
     }
@@ -199,10 +298,7 @@ public class pauseScript : MonoBehaviour
         _controlsRoot = _controlsDocumentInstance.rootVisualElement;
 
         if (_controlsRoot == null)
-        {
-            Debug.LogWarning("Controls root visual element not found!");
             return;
-        }
 
         _controlsRoot.style.display = DisplayStyle.Flex;
         BindControlsBackButton();
@@ -232,7 +328,5 @@ public class pauseScript : MonoBehaviour
 
         if (_backButtonControls != null)
             _backButtonControls.clicked += OnControlsBackClicked;
-        else
-            Debug.LogWarning("backButtonControls not found!");
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MapButton : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MapButton : MonoBehaviour
     public Color normalColor = Color.white;
     public Color selectedColor = Color.green;
     public Color completedColor = Color.red;
+
+    public Color hoverColor = Color.yellow;
 
     private bool isCompleted = false;
 
@@ -55,5 +58,35 @@ public class MapButton : MonoBehaviour
         }
 
         image.color = selectedColor;
+    }
+    void Update()
+    {
+        bool isFocused = EventSystem.current.currentSelectedGameObject == gameObject;
+
+        if (isFocused)
+        {
+            if (mapTable != null)
+            {
+                mapTable.ShowLevelInfo(levelIndex);
+            }
+
+            if (!isCompleted)
+            {
+                image.color = hoverColor;
+            }
+
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                SelectLevel();
+            }
+        }
+        else
+        {
+  
+            if (!isCompleted)
+            {
+                image.color = normalColor;
+            }
+        }
     }
 }

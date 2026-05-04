@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 441468946}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &918265404
@@ -1142,19 +1142,21 @@ MonoBehaviour:
   artImage: {fileID: 508302339}
   text1: {fileID: 814531649}
   text2: {fileID: 1318991238}
-  nextButton: {fileID: 441468946}
+  nextButton: {fileID: 441468947}
   images:
   - {fileID: 21300000, guid: 675f54a806af19745ae62f9d5bf0c61a, type: 3}
   - {fileID: 21300000, guid: 66843f9d57405d346be8b4bb02337bbc, type: 3}
   firstTexts:
   - "We found it drifting in the void\u2026\nA sealed chest unlike anything we\u2019d
     seen."
-  - "Then we understood.\nThe key wasn\u2019t missing\u2026"
+  - 'Then we understood.
+
+    We were missing a key.'
   secondTexts:
   - 'No lock. No hinge.
 
     No way to open it.'
-  - 'It was broken. Three pieces.
+  - 'It was broken. Three pieces of it.
 
     Scattered across nearby planets.'
   delayBetweenTexts: 5
