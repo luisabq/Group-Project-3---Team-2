@@ -76,6 +76,10 @@ public class MapTable : MonoBehaviour, IInteractable
 
         Time.timeScale = 1f;
     }
+    void OnDisable()
+    {
+        IsMapOpen = false;
+    }
 
     public void ShowLevelInfo(int index)
     {

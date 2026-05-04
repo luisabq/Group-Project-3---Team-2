@@ -74,11 +74,16 @@ public class pauseScript : MonoBehaviour
             if (MapTable.IsMapOpen)
             {
                 MapTable mapTable = Object.FindFirstObjectByType<MapTable>();
+
                 if (mapTable != null)
                 {
                     mapTable.CloseMap();
+                    return;
                 }
-                return;
+                else
+                {
+                    MapTable.IsMapOpen = false;
+                }
             }
 
             if (_isPaused)
