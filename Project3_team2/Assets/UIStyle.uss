@@ -1,0 +1,53 @@
+:root {
+}
+
+.header {
+    font-size: 246px;
+    -unity-text-align: upper-center;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Steamwreck-07pd.ttf?fileID=12800000&guid=25f21b7d8f22e4274a227e56b68ed95b&type=3#Steamwreck-07pd");
+    color: rgb(255, 229, 138);
+}
+
+.button {
+    font-size: 80px;
+    -unity-text-align: middle-center;
+    width: 500px;
+    height: 200px;
+    align-self: center;
+    align-content: auto;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Steamwreck-07pd.ttf?fileID=12800000&guid=25f21b7d8f22e4274a227e56b68ed95b&type=3#Steamwreck-07pd");
+    background-image: url("project://database/Assets/UI%20Toolkit/UIBoxExample2.png?fileID=2800000&guid=816a7deb3ecb1464a8e1cf1ff2acc27a&type=3#UIBoxExample2");
+    background-color: rgba(0, 0, 0, 0);
+    background-size: 110% 110%;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-position-x: left -11px;
+}
+
+.buttonPause {
+    width: 506px;
+    height: 186px;
+    font-size: 84px;
+    background-image: url("project://database/Assets/UI%20Toolkit/UIBoxExample2.png?fileID=2800000&guid=816a7deb3ecb1464a8e1cf1ff2acc27a&type=3#UIBoxExample2");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/Steamwreck-07pd.ttf?fileID=12800000&guid=25f21b7d8f22e4274a227e56b68ed95b&type=3#Steamwreck-07pd");
+    -unity-text-align: middle-center;
+    white-space: normal;
+    background-position-x: left -11px;
+}
+
+.container {
+    background-color: rgb(21, 28, 36);
+}
+
+button:focus {
+    border-color: yellow;
+    border-width: 4px;
+}
+
+.selected {
+    background-color: rgba(255, 215, 0, 0.15);
+    scale: 1.05;
+}

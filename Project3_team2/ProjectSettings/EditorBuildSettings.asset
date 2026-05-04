@@ -6,8 +6,35 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/UI/MainMenu.unity
+    guid: cacf6af710ebf1043a969654fba70536
+  - enabled: 1
+    path: Assets/Scenes/UI/Credits.unity
+    guid: 3eb96840ce900409fa7b7c3ac7b91630
+  - enabled: 1
+    path: Assets/Scenes/UI/HowToPlay.unity
+    guid: f1c9049a0fc5c4a90b7087335c084b47
+  - enabled: 1
+    path: Assets/Scenes/UI/CutsceneIntro.unity
+    guid: 1d094622564311340a3c61d4adc79a54
+  - enabled: 1
+    path: Assets/Scenes/Hub Scene.unity
+    guid: 56ef51ae00da1564e9a19f0878771d65
+  - enabled: 1
+    path: Assets/Scenes/Heist Level.unity
+    guid: 2882f4d52e727cb40af5f4adfd0c6200
+  - enabled: 1
+    path: Assets/Scenes/Ruin Level.unity
+    guid: 4c609bbff60c5924c9062306659b0ff9
+  - enabled: 1
+    path: Assets/Scenes/Third Planet.unity
+    guid: 701aec27505baa54096df2dbba8f84c4
+  - enabled: 1
+    path: Assets/Scenes/UI/CutsceneEnding.unity
+    guid: 571f85eb2c3b0834ba75c20bf41f1606
+  - enabled: 1
+    path: Assets/Scenes/UI/WinScreen.unity
+    guid: a791a6aae848a4240bca2fd9af047aee
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyle.uss?fileID=7433441132597879392&amp;guid=9ce5ae935e0af4fa8ac3d752f1136f48&amp;type=3#UIStyle" />
+    <ui:VisualElement name="container" class="container" style="flex-grow: 1; position: absolute; top: 37px; width: 1700px; height: 1000px; align-self: center; background-color: rgba(7, 8, 34, 0.6);">
+        <ui:VisualElement name="picture" style="flex-grow: 1; background-color: rgba(5, 38, 67, 0); align-self: center; width: 90%; bottom: 28px; position: absolute; height: 90%; align-content: center; background-image: url(&quot;project://database/Assets/UI%20Toolkit/htpSprite.png?fileID=2800000&amp;guid=ef1a7fda53b594d97a691b2baedeac4d&amp;type=3#htpSprite&quot;); left: auto; justify-content: center;" />
+        <ui:Label text="How To Play" name="title" class="header" style="top: 85px; font-size: 113px; position: absolute; left: auto; align-self: center; color: rgb(41, 16, 0);" />
+        <ui:Button text="Back" name="backButtonControls" class="button" style="align-self: flex-end; align-items: auto; width: 10%; height: 10%; font-size: 56px; bottom: 2px; right: 2px; position: absolute;" />
+    </ui:VisualElement>
+</ui:UXML>
